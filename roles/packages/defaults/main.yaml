@@ -1,0 +1,50 @@
+---
+# TODO(rkm 2021-08-14) Split into general and OS-specific
+
+packages:
+  - ant
+  - bash-completion
+  - bc
+  - bind-utils
+  - bzip2
+  - clang
+  - clang-devel
+  - curl
+  - dkms
+  - dos2unix
+  - figlet
+  - gcc
+  - gdb
+  - graphviz
+  - htop
+  - ImageMagick
+  - java-1.8.0-openjdk-devel
+  - java-11-openjdk-devel
+  - jq
+  - kernel-devel
+  - kernel-headers
+  - llvm
+  - llvm-devel
+  - mlocate
+  - ncdu
+  - net-tools
+  - nmap
+  - openmpi-devel
+  - p7zip
+  - perl
+  - perl-Image-ExifTool
+  - psmisc
+  - python36-devel
+  - python38-devel
+  - rsync
+  - strace
+  - telnet
+  - traceroute
+  - tree
+  - units
+  - usbutils
+  - vim
+  - wget
+  - xdg-utils
+  - xorg-x11-server-Xorg
+  - xorg-x11-xauth
