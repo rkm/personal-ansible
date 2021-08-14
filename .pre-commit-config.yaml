@@ -35,7 +35,7 @@ repos:
     rev: "v2.3.2"
     hooks:
       - id: prettier
-        args: [--config, .meta/prettierrc.yml]
+        args: [--config, .meta/prettierrc.yaml]
   - repo: https://github.com/adrienverge/yamllint
     rev: "v1.26.2"
     hooks:
@@ -49,6 +49,6 @@ repos:
     rev: "v5.1.2"
     hooks:
       - id: ansible-lint
-        args: [-c, .meta/ansible-lint.yml]
+        args: [-c, .meta/ansible-lint.yaml]
         additional_dependencies:
           - .[core]
