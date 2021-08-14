@@ -3,4 +3,4 @@
   hosts: all
   roles:
     - packages
-  tags: [never, packages]
+  tags: [packages]
