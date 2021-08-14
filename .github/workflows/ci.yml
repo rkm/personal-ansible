@@ -6,7 +6,7 @@ on:
       - main
   pull_request:
     branches:
-      - main      
+      - main
   schedule:
     - cron: "0 0 * * 1"
   workflow_dispatch:
@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install test dependencies.
+      - name: install test dependencies
         run: pip install -r requirements.txt
-      - name: Run Molecule tests.
+      - name: run molecule tests
         run: molecule test
