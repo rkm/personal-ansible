@@ -7,32 +7,25 @@ packages:
   - bc
   - bind-utils
   - bzip2
-  - clang
-  - clang-devel
   - curl
-  - dkms
+  # - dkms
   - dos2unix
-  - figlet
+  # - figlet
   - gcc
   - gdb
   - graphviz
-  - htop
-  - ImageMagick
+  # - htop
+  # - ImageMagick
   - java-1.8.0-openjdk-devel
   - java-11-openjdk-devel
   - jq
-  - kernel-devel
-  - kernel-headers
-  - llvm
-  - llvm-devel
   - mlocate
-  - ncdu
+  # - ncdu
   - net-tools
   - nmap
-  - openmpi-devel
-  - p7zip
+  # - p7zip
   - perl
-  - perl-Image-ExifTool
+  # - perl-Image-ExifTool
   - psmisc
   - python36-devel
   - python38-devel
@@ -45,6 +38,3 @@ packages:
   - usbutils
   - vim
   - wget
-  - xdg-utils
-  - xorg-x11-server-Xorg
-  - xorg-x11-xauth
