@@ -1,2 +1,2 @@
 ansible
-molecule[docker]
+molecule[podman]
