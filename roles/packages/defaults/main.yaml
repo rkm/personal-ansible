@@ -2,7 +2,7 @@
 # TODO(rkm 2021-08-14) Split into general and OS-specific
 
 packages:
-  - ant
+  # - ant # ubuntu
   - bash-completion
   - bc
   - bind-utils
