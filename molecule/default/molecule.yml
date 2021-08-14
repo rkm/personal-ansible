@@ -1,0 +1,11 @@
+---
+driver:
+  name: podman
+platforms:
+  - name: rocky
+    image: rockylinux/rockylinux:latest
+    privileged: true
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
