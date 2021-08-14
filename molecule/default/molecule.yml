@@ -2,14 +2,14 @@
 driver:
   name: podman
 platforms:
-  - name: rocky 8.4
-    image: rockylinux/rockylinux:8.4
+  - name: rocky-8.4
+    image: docker.io/rockylinux/rockylinux:8.4
     privileged: true
-  - name: ubuntu 20.04
-    image: ubuntu:20.04
+  - name: ubuntu-20.04
+    image: docker.io/ubuntu:20.04
     privileged: true
-  - name: centos 8.3.2011
-    image: centos:8.3.2011
+  - name: centos-8.3.2011
+    image: docker.io/centos:8.3.2011
     privileged: true
 provisioner:
   name: ansible
