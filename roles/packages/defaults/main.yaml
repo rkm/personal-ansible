@@ -3,7 +3,7 @@
 
 packages:
   # - ant # ubuntu
-  - bash-completion
+  # - bash-completion # ubuntu
   - bc
   - bind-utils
   - bzip2
