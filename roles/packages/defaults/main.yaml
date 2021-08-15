@@ -5,7 +5,7 @@ packages:
   # - ant # ubuntu
   # - bash-completion # ubuntu
   # - bc # ubuntu
-  - bind-utils
+  # - bind-utils # ubuntu
   - bzip2
   - curl
   # - dkms
@@ -16,8 +16,8 @@ packages:
   - graphviz
   # - htop
   # - ImageMagick
-  - java-1.8.0-openjdk-devel
-  - java-11-openjdk-devel
+  # - java-1.8.0-openjdk-devel # ubuntu
+  # - java-11-openjdk-devel # ubuntu
   - jq
   - mlocate
   # - ncdu
@@ -27,8 +27,8 @@ packages:
   - perl
   # - perl-Image-ExifTool
   - psmisc
-  - python36-devel
-  - python38-devel
+  # - python36-devel # ubuntu
+  # - python38-devel # ubuntu
   - rsync
   - strace
   - telnet
