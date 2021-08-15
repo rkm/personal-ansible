@@ -4,7 +4,7 @@
 packages:
   # - ant # ubuntu
   # - bash-completion # ubuntu
-  - bc
+  # - bc # ubuntu
   - bind-utils
   - bzip2
   - curl
