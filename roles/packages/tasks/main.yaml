@@ -1,6 +1,12 @@
 ---
+- name: update package cache
+  become: true
+  package:
+    update_cache: yes
+
 - name: Install packages
   become: true
   package:
     name: "{{ packages }}"
     state: present
+  when: false

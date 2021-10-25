@@ -1,34 +1,32 @@
 ---
-# TODO(rkm 2021-08-14) Split into general and OS-specific
+# - bash-completion # ubuntu
+# - bc # ubuntu
+# - bind-utils # ubuntu
+# - dkms
+# - figlet
+# - htop
+# - ImageMagick
+# - java-1.8.0-openjdk-devel # ubuntu
+# - java-11-openjdk-devel # ubuntu
+# - ncdu
+# - p7zip
+# - perl-Image-ExifTool
+# - python36-devel # ubuntu
+# - python38-devel # ubuntu
 
 packages:
-  # - ant # ubuntu
-  # - bash-completion # ubuntu
-  # - bc # ubuntu
-  # - bind-utils # ubuntu
   - bzip2
   - curl
-  # - dkms
   - dos2unix
-  # - figlet
   - gcc
   - gdb
   - graphviz
-  # - htop
-  # - ImageMagick
-  # - java-1.8.0-openjdk-devel # ubuntu
-  # - java-11-openjdk-devel # ubuntu
   - jq
   - mlocate
-  # - ncdu
   - net-tools
   - nmap
-  # - p7zip
   - perl
-  # - perl-Image-ExifTool
   - psmisc
-  # - python36-devel # ubuntu
-  # - python38-devel # ubuntu
   - rsync
   - strace
   - telnet
