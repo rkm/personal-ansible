@@ -3,7 +3,7 @@ driver:
   name: podman
 platforms:
   - name: rocky-8.4
-    image: docker.io/rockylinux/rockylinux:8.4
+    image: docker.io/rockylinux/rockylinux@sha256:f0d7460b97156f6c8ea2ae73152bc11fe410d272387d60ddff36dfcea22ef689
     privileged: true
   - name: ubuntu-20.04
     image: docker.io/ubuntu@sha256:7cc0576c7c0ec2384de5cbf245f41567e922aab1b075f3e8ad565f508032df17
