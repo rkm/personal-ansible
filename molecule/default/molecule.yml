@@ -8,8 +8,8 @@ platforms:
   - name: ubuntu-20.04
     image: docker.io/ubuntu:20.04
     privileged: true
-  - name: centos-8.3.2011
-    image: docker.io/centos:8.3.2011
+  - name: centos-stream-8
+    image: quay.io/centos/centos@sha256:338b5d69f1ef6efbf9d57191b36283bb0a29b6f0560a860f0d230caf82490926
     privileged: true
 provisioner:
   name: ansible
