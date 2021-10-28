@@ -2,14 +2,15 @@
 driver:
   name: podman
 platforms:
+  # TODO(rkm 2021-10-28) Use exact image tags
   - name: rocky-8.4
-    image: docker.io/rockylinux/rockylinux@sha256:f0d7460b97156f6c8ea2ae73152bc11fe410d272387d60ddff36dfcea22ef689
+    image: docker.io/rockylinux/rockylinux:latest
     privileged: true
   - name: ubuntu-20.04
-    image: docker.io/ubuntu@sha256:7cc0576c7c0ec2384de5cbf245f41567e922aab1b075f3e8ad565f508032df17
+    image: docker.io/ubuntu:latest
     privileged: true
   - name: centos-stream-8
-    image: quay.io/centos/centos@sha256:338b5d69f1ef6efbf9d57191b36283bb0a29b6f0560a860f0d230caf82490926
+    image: quay.io/centos/centos:latest
     privileged: true
 provisioner:
   name: ansible
