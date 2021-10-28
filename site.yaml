@@ -3,7 +3,8 @@
   hosts: all
   tags: [always]
   tasks:
-    - tempfile:
+    - name: create tempdir
+      tempfile:
         state: directory
       register: tempdir
       changed_when: false

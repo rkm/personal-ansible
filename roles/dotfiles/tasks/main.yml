@@ -16,6 +16,7 @@
 
 - name: create combined .gitconfig
   shell: >
+    set -o pipefail
     cat
     "{{ item }}/common/gitconfig"
     "{{ item }}/linux/config/git/config"
@@ -43,5 +44,3 @@
   debug:
     var: sync_result
   when: "'deleting' in (sync_result.results | selectattr('msg') | list)"
-
-- debug: var=sync_result
