@@ -4,6 +4,7 @@
   tags: [always]
   tasks:
     - name: create tempdir
+      delegate_to: localhost
       tempfile:
         state: directory
       register: tempdir
@@ -26,6 +27,7 @@
   tags: [always]
   tasks:
     - name: find temp dirs
+      delegate_to: localhost
       find:
         paths: /tmp
         file_type: directory
@@ -33,6 +35,7 @@
         patterns: "ansible.*"
       register: temp_paths
     - name: delete temp dirs
+      delegate_to: localhost
       file:
         path: "{{ item.path }}"
         state: absent

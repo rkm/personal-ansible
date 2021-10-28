@@ -1,11 +1,13 @@
 ---
 - name: download dotfiles
+  delegate_to: localhost
   get_url:
     url: https://api.github.com/repos/rkm/dotfiles/tarball
     dest: "{{ tempdir.path }}/dotfiles.tgz"
   changed_when: false # Will always be changed
 
 - name: unarchive dotfiles
+  delegate_to: localhost
   unarchive:
     src: "{{ tempdir.path }}/dotfiles.tgz"
     dest: "{{ tempdir.path }}"
@@ -15,6 +17,7 @@
   register: archive_contents
 
 - name: create combined .gitconfig
+  delegate_to: localhost
   shell: >
     set -o pipefail
     cat
