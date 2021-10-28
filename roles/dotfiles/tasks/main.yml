@@ -1,0 +1,47 @@
+---
+- name: download dotfiles
+  get_url:
+    url: https://api.github.com/repos/rkm/dotfiles/tarball
+    dest: "{{ tempdir.path }}/dotfiles.tgz"
+  changed_when: false # Will always be changed
+
+- name: unarchive dotfiles
+  unarchive:
+    src: "{{ tempdir.path }}/dotfiles.tgz"
+    dest: "{{ tempdir.path }}"
+    remote_src: true
+    list_files: true
+  changed_when: false # Will always be changed
+  register: archive_contents
+
+- name: create combined .gitconfig
+  shell: >
+    cat
+    "{{ item }}/common/gitconfig"
+    "{{ item }}/linux/config/git/config"
+    | tee "{{ item }}/linux/config/git/config"
+  changed_when: false # Will always be changed
+  with_items:
+    - "{{ tempdir.path }}/{{ archive_contents.files[0] }}"
+
+- name: deploy dotfiles
+  synchronize:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    checksum: true
+    times: false
+    dirs: true
+    delete: true
+  with_items:
+    - src: "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/config/"
+      dest: "{{ lookup('env', 'HOME') }}/test/.config"
+    - src: "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/profile"
+      dest: "{{ lookup('env', 'HOME') }}/test/.profile"
+  register: sync_result
+
+- name: debug deleted files
+  debug:
+    var: sync_result
+  when: "'deleting' in (sync_result.results | selectattr('msg') | list)"
+
+- debug: var=sync_result

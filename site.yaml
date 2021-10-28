@@ -1,6 +1,39 @@
 ---
+- name: setup
+  hosts: all
+  tags: [always]
+  tasks:
+    - tempfile:
+        state: directory
+      register: tempdir
+      changed_when: false
+
 - name: install packages
   hosts: all
+  tags: [packages]
   roles:
     - packages
-  tags: [packages]
+
+- name: install dotfiles
+  hosts: all
+  tags: [dotfiles]
+  roles:
+    - dotfiles
+
+- name: cleanup
+  hosts: all
+  tags: [always]
+  tasks:
+    - name: find temp dirs
+      find:
+        paths: /tmp
+        file_type: directory
+        recurse: false
+        patterns: "ansible.*"
+      register: temp_paths
+    - name: delete temp dirs
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      with_items: "{{ temp_paths.files }}"
+      changed_when: false
