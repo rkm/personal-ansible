@@ -13,3 +13,5 @@ Ansible configuration for my dev systems
 -   Separate ~/.local/bin depending on python version. for ansible stuff need
     3.6 (though check if needed with newer OSs)
 -   Auto-update for versions in vars files
+-   TODOs from old repos
+-   user-only install
