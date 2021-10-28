@@ -4,7 +4,6 @@ Ansible configuration for my dev systems
 
 ## TODO
 
--   Auto-update for versions in vars files
 -   Compile git with PCRE support
     -   `fatal: cannot use Perl-compatible regexes when not compiled with USE_LIBPCRE`
 -   gitconfig is currently duplicated in ~/.config
@@ -13,3 +12,4 @@ Ansible configuration for my dev systems
 -   Fix timezone setting
 -   Separate ~/.local/bin depending on python version. for ansible stuff need
     3.6 (though check if needed with newer OSs)
+-   Auto-update for versions in vars files
