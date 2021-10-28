@@ -38,9 +38,9 @@
     delete: true
   with_items:
     - src: "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/config/"
-      dest: "{{ lookup('env', 'HOME') }}/test/.config"
+      dest: "{{ lookup('env', 'HOME') }}/.config"
     - src: "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/profile"
-      dest: "{{ lookup('env', 'HOME') }}/test/.profile"
+      dest: "{{ lookup('env', 'HOME') }}/.profile"
   register: sync_result
 
 - name: debug deleted files
