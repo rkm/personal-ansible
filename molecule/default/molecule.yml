@@ -14,5 +14,7 @@ platforms:
     privileged: true
 provisioner:
   name: ansible
+  env:
+    HOME: /home/runner
 verifier:
   name: ansible

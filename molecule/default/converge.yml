@@ -1,4 +1,9 @@
 ---
 - name: converge
   hosts: all
+  become: true
+  pre_tasks:
+    - name: create user
+      user:
+        name: runner
 - import_playbook: ../../site.yaml
