@@ -18,6 +18,8 @@
 
 - name: create combined .gitconfig
   delegate_to: localhost
+  args:
+    executable: /bin/bash
   shell: |
     set -o pipefail
     cat \
