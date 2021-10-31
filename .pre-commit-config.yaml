@@ -18,6 +18,14 @@ repos:
     hooks:
       - id: check-hooks-apply
       - id: check-useless-excludes
+  - repo: local
+    hooks:
+      - id: nocommit
+        name: disallow nocommit
+        entry: (?i)nocommit
+        language: pygrep
+        types: [text]
+        exclude: .pre-commit-config.yaml
   - repo: https://github.com/codespell-project/codespell
     rev: "v2.1.0"
     hooks:
