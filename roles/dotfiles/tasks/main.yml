@@ -62,6 +62,10 @@
   when: deleted_items | length
   changed_when: true # changed if run
 
+- name: temp ls
+  command: ls -l /tmp
+  changed_when: false
+
 - name: register dotfiles dirname
   find:
     paths: "{{ tempdir.path }}"
@@ -78,4 +82,5 @@
   copy:
     content: "{{ dotfiles_dir_name.files[0].path.split('-')[2] }}\n"
     dest: "{{ g_home }}/.config/VERSION"
+    mode: u=r,g=r,o=
   changed_when: false # will always be changed
