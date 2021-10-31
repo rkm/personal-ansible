@@ -63,10 +63,12 @@
   changed_when: true # changed if run
 
 - name: temp ls
+  delegate_to: localhost
   command: ls -l /tmp
   changed_when: false
 
 - name: register dotfiles dirname
+  delegate_to: localhost
   find:
     paths: "{{ tempdir.path }}"
     file_type: directory
