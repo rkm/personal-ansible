@@ -28,6 +28,12 @@
   with_items:
     - "{{ tempdir.path }}/{{ archive_contents.files[0] }}"
 
+- name: delete old dotfiles VERSION file
+  file:
+    dest: "{{ g_home }}/.config/VERSION"
+    state: absent
+  changed_when: false # will normally be changed
+
 - name: deploy dotfiles
   synchronize:
     src: "{{ item.src }}"
@@ -43,10 +49,15 @@
       dest: "{{ g_home }}/.profile"
   register: sync_result
 
+- name: register temp fact
+  set_fact:
+    deleted_items: "{{ sync_result.results | selectattr('msg', 'contains', 'deleting') }}"
+
 - name: debug deleted files
   debug:
-    var: sync_result
-  when: "'deleting' in (sync_result.results | selectattr('msg') | list)"
+    var: deleted_items
+  when: deleted_items | length
+  changed_when: true # changed if run
 
 - name: register dotfiles dirname
   find:
@@ -64,3 +75,4 @@
   copy:
     content: "{{ dotfiles_dir_name.files[0].path.split('-')[2] }}\n"
     dest: "{{ g_home }}/.config/VERSION"
+  changed_when: false # will always be changed
