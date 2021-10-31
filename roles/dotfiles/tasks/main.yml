@@ -53,15 +53,11 @@
       dest: "{{ g_home }}/.profile"
   register: sync_result
 
-- name: register temp fact
-  set_fact:
-    deleted_items: "{{ sync_result.results | selectattr('msg', 'contains', 'deleting') }}"
-
-- name: debug deleted files
+- name: debug changed files
   debug:
-    var: deleted_items
-  when: deleted_items | length
-  changed_when: true # changed if run
+    msg: "{{ sync_result.results | map(attribute='msg') }}"
+  when: sync_result.changed
+  changed_when: true # will always be changed
 
 - name: temp ls
   delegate_to: localhost
