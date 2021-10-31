@@ -15,4 +15,4 @@ jobs:
       - name: install test dependencies
         run: pip install -r requirements.txt
       - name: run molecule tests
-        run: molecule test
+        run: molecule test -- -v
