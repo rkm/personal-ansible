@@ -15,7 +15,7 @@
   pre_tasks:
     - name: end_play if not g_global_install
       meta: end_play
-      when: g_global_install
+      when: not g_global_install | bool
   roles:
     - role: packages
       tags: [packages]
