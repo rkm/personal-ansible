@@ -52,6 +52,7 @@ repos:
     hooks:
       - id: yamllint
         args: [-c, .meta/yamllint.yaml]
+  # TODO(rkm 2021-10-31) Enable
   # - repo: https://github.com/shellcheck-py/shellcheck-py
   #   rev: "v0.7.2.1"
   #   hooks:
