@@ -3,11 +3,11 @@
   become: true
   package:
     update_cache: yes
-  when: not g_packages_role
+  when: g_packages_role
 
 - name: Install packages
   become: true
   package:
     name: "{{ packages }}"
     state: present
-  when: not g_packages_role
+  when: g_packages_role
