@@ -13,9 +13,9 @@
 - name: Run global roles
   hosts: all
   pre_tasks:
-    - name: check global var
+    - name: end_play if not g_global_install
       meta: end_play
-      when: not g_global_install
+      when: g_global_install
   roles:
     - role: packages
       tags: [packages]
