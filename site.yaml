@@ -10,12 +10,12 @@
       register: tempdir
       changed_when: false
 
-- name: install packages
+- name: Run global roles
   hosts: all
-  tags: [packages]
   roles:
     - role: packages
-      when: g_packages_role
+      tags: [packages]
+      when: g_global_install and g_packages_role
 
 - name: install dotfiles
   hosts: all
@@ -39,6 +39,7 @@
       delegate_to: localhost
       file:
         path: "{{ item.path }}"
+        # TODO(rkm 2021-10-31) This can fail if other users have ansible temp dirs
         state: absent
       with_items: "{{ temp_paths.files }}"
       changed_when: false
