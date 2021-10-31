@@ -12,10 +12,13 @@
 
 - name: Run global roles
   hosts: all
+  pre_tasks:
+    - name: check global var
+      meta: end_play
+      when: not g_global_install
   roles:
     - role: packages
       tags: [packages]
-      when: g_global_install and g_packages_role
 
 - name: install dotfiles
   hosts: all
