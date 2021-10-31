@@ -14,7 +14,8 @@
   hosts: all
   tags: [packages]
   roles:
-    - packages
+    - role: packages
+      when: g_packages_role
 
 - name: install dotfiles
   hosts: all
