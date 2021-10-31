@@ -41,10 +41,11 @@
   synchronize:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
+    archive: false
     checksum: true
     times: false
-    dirs: true
     delete: true
+    recursive: true
   with_items:
     - src: "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/config/"
       dest: "{{ g_home }}/.config"
