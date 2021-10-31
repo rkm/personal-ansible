@@ -1,0 +1,3 @@
+---
+g_username: "{{ lookup('env', 'ANSIBLE_USER') or 'rkm' }}"
+g_home: /home/{{ g_username }}

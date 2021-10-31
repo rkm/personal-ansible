@@ -15,6 +15,6 @@ platforms:
 provisioner:
   name: ansible
   env:
-    HOME: /home/runner
+    ANSIBLE_USER: runner
 verifier:
   name: ansible
