@@ -47,3 +47,20 @@
   debug:
     var: sync_result
   when: "'deleting' in (sync_result.results | selectattr('msg') | list)"
+
+- name: register dotfiles dirname
+  find:
+    paths: "{{ tempdir.path }}"
+    file_type: directory
+    recurse: false
+    pattern: rkm-dotfiles-*
+  register: dotfiles_dir_name
+
+- name: assert one file matched
+  assert:
+    that: dotfiles_dir_name.files | length == 1
+
+- name: write dotfiles version
+  copy:
+    content: "{{ dotfiles_dir_name.files[0].path.split('-')[2] }}\n"
+    dest: "{{ g_home }}/.config/VERSION"
