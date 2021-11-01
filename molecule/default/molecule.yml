@@ -6,12 +6,13 @@ platforms:
   - name: rocky-8.4
     image: docker.io/rockylinux/rockylinux:latest
     privileged: true
-  - name: ubuntu-20.04
-    image: docker.io/ubuntu:latest
-    privileged: true
-  - name: centos-stream-8
-    image: quay.io/centos/centos:latest
-    privileged: true
+  # temp
+  # - name: ubuntu-20.04
+  #   image: docker.io/ubuntu:latest
+  #   privileged: true
+  # - name: centos-stream-8
+  #   image: quay.io/centos/centos:latest
+  #   privileged: true
 provisioner:
   name: ansible
   env:
