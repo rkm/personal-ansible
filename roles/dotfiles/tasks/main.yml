@@ -16,20 +16,24 @@
   changed_when: false # Will always be changed
   register: archive_contents
 
+- name: register tmp dotfiles path
+  set_fact:
+    tmp_dotfiles_path: "{{ tempdir.path }}/{{ archive_contents.files[0] }}"
+
 - name: create combined .gitconfig
   delegate_to: localhost
   args:
     executable: /bin/bash
   shell: |
-    set -o pipefail
+    set -euxo pipefail
     cat \
-      "{{ item }}/common/gitconfig" \
-      "{{ item }}/linux/config/git/config" \
-    | tee "{{ item }}/linux/config/git/config" \
-    > /dev/null
+      "{{ tmp_dotfiles_path }}/common/gitconfig" \
+      "{{ tmp_dotfiles_path }}/linux/config/git/config" \
+    > "{{ tempdir.path }}/gitconfig"
+    mv \
+      "{{ tempdir.path }}/gitconfig" \
+      "{{ tmp_dotfiles_path }}/linux/config/git/config"
   changed_when: false # Will always be changed
-  with_items:
-    - "{{ tempdir.path }}/{{ archive_contents.files[0] }}"
 
 - name: delete old dotfiles VERSION file
   file:
@@ -47,9 +51,9 @@
     delete: true
     recursive: true
   with_items:
-    - src: "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/config/"
+    - src: "{{ tmp_dotfiles_path }}/linux/config/"
       dest: "{{ g_home }}/.config"
-    - src: "{{ tempdir.path }}/{{ archive_contents.files[0] }}/linux/profile"
+    - src: "{{ tmp_dotfiles_path }}/linux/profile"
       dest: "{{ g_home }}/.profile"
   register: sync_result
 
@@ -59,27 +63,9 @@
   when: sync_result.changed
   changed_when: true # will always be changed
 
-- name: temp ls
-  delegate_to: localhost
-  command: ls -l /tmp
-  changed_when: false
-
-- name: register dotfiles dirname
-  delegate_to: localhost
-  find:
-    paths: "{{ tempdir.path }}"
-    file_type: directory
-    recurse: false
-    pattern: rkm-dotfiles-*
-  register: dotfiles_dir_name
-
-- name: assert one file matched
-  assert:
-    that: dotfiles_dir_name.files | length == 1
-
 - name: write dotfiles version
   copy:
-    content: "{{ dotfiles_dir_name.files[0].path.split('-')[2] }}\n"
+    content: "{{ (tmp_dotfiles_path | realpath | basename | split('-'))[2] }}\n"
     dest: "{{ g_home }}/.config/VERSION"
     mode: u=r,g=r,o=
   changed_when: false # will always be changed
