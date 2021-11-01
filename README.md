@@ -2,6 +2,14 @@
 
 Ansible configuration for my dev systems
 
+## Notes
+
+-   Types of install
+    -   Own VM -> `g_global_install: true` # g_is_offline ignored
+    -   Other VM (with network) ->
+        `g_global_install: false && g_is_offline: false`
+    -   Other VM (no network) -> `g_global_install: false && g_is_offline: true`
+
 ## TODO
 
 -   Compile git with PCRE support
@@ -11,8 +19,3 @@ Ansible configuration for my dev systems
     3.6 (though check if needed with newer OSs)
 -   Auto-update for versions in vars files
 -   TODOs from old repos
--   Types of install
-    -   Own VM -> `g_global_install: true` # g_is_offline ignored
-    -   Other VM (with network) ->
-        `g_global_install: false && g_is_offline: false`
-    -   Other VM (no network) -> `g_global_install: false && g_is_offline: true`
