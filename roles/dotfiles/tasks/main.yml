@@ -41,8 +41,43 @@
     state: absent
   changed_when: false # will normally be changed
 
-# NOTE(rkm 2021-11-06) Can't use --backup since any changed files will also be
-# backed-up. Could maybe do a dry-run and move though
+- name: deploy dotfiles - dry-run to check deleted
+  synchronize:
+    src: "{{ tmp_dotfiles_path }}/linux/config/"
+    dest: "{{ g_home }}/.config"
+    archive: false
+    checksum: true
+    times: false
+    delete: true
+    recursive: true
+    rsync_opts: [--dry-run, --exclude=ansible_backup]
+  register: sync_dry_run_result
+
+- name: ensure backup dir exists
+  file:
+    path: "{{ g_home }}/.config/ansible_backup"
+    state: directory
+    mode: u=rwx,g=rwx,o=
+
+- name: move any files marked for deletion
+  shell: |
+    set -euxo pipefail
+    mkdir -p "{{ g_home }}/.config/ansible_backup/$(dirname {{ item }})"
+    mv "{{ g_home }}/.config/{{ item }}" "{{ g_home }}/.config/ansible_backup/{{ item }}"
+  with_items: >-
+    {{
+    sync_dry_run_result.stdout_lines
+    | reject('search', '\/$')
+    | map("regex_findall", '^\*deleting\s+(.*)$')
+    | map("first")
+    }}
+  when: sync_dry_run_result.stdout_lines | length > 0
+
+- name: delete empty directories
+  command: find {{ g_home }}/.config -empty -type d -delete -print
+  register: find_delete_result
+  changed_when: find_delete_result.stdout | length > 0
+
 - name: deploy dotfiles
   synchronize:
     src: "{{ item.src }}"
@@ -52,6 +87,7 @@
     times: false
     delete: true
     recursive: true
+    rsync_opts: [--exclude=ansible_backup]
   with_items:
     - src: "{{ tmp_dotfiles_path }}/linux/config/"
       dest: "{{ g_home }}/.config"
