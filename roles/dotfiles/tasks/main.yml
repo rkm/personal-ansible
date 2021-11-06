@@ -33,7 +33,7 @@
     mv \
       "{{ tempdir.path }}/gitconfig" \
       "{{ tmp_dotfiles_path }}/linux/config/git/config"
-  changed_when: false # Will always be changed
+  changed_when: false # will always be changed
 
 - name: delete old dotfiles VERSION file
   file:
@@ -41,7 +41,8 @@
     state: absent
   changed_when: false # will normally be changed
 
-# TODO(rkm 2021-11-01) rsync --backup arg
+# NOTE(rkm 2021-11-06) Can't use --backup since any changed files will also be
+# backed-up. Could maybe do a dry-run and move though
 - name: deploy dotfiles
   synchronize:
     src: "{{ item.src }}"
@@ -62,7 +63,7 @@
   debug:
     msg: "{{ sync_result.results | map(attribute='msg') }}"
   when: sync_result.changed
-  changed_when: true # will always be changed
+  changed_when: true # should always be changed if run
 
 - name: write dotfiles version
   copy:
