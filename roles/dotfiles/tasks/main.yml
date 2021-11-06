@@ -71,10 +71,13 @@
     | map("regex_findall", '^\*deleting\s+(.*)$')
     | map("first")
     }}
-  when: sync_dry_run_result.stdout_lines | length > 0
+  when: '"deleting" in sync_dry_run_result.msg'
 
 - name: delete empty directories
-  command: find {{ g_home }}/.config -empty -type d -delete -print
+  command: |
+    find {{ g_home }}/.config \
+    -not \( -path {{ g_home }}/.config/ansible_backup -prune \) \
+    -empty -type d -print
   register: find_delete_result
   changed_when: find_delete_result.stdout | length > 0
 
