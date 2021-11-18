@@ -19,3 +19,4 @@ Ansible configuration for my dev systems
     3.6 (though check if needed with newer OSs)
 -   Auto-update for versions in vars files
 -   TODOs from old repos
+-   Verify PATH ordering and no dupes
