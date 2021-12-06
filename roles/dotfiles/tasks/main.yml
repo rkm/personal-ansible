@@ -106,7 +106,7 @@
 
 - name: write dotfiles version
   copy:
-    content: "{{ (tmp_dotfiles_path | realpath | basename | split('-'))[2] }}\n"
+    content: "{{ (tmp_dotfiles_path | realpath | basename).split('-')[2] }}\n"
     dest: "{{ g_home }}/.config/VERSION"
     mode: u=r,g=r,o=
   changed_when: false # will always be changed
