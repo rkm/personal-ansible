@@ -20,3 +20,4 @@ Ansible configuration for my dev systems
 -   Auto-update for versions in vars files
 -   TODOs from old repos
 -   Verify PATH ordering and no dupes
+-   pygrep hook - require `#changed` for any changed_when and failed_when
