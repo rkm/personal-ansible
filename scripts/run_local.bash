@@ -2,7 +2,7 @@
 
 set -euxo pipefail
 
-ansible-playbook \
+/usr/bin/ansible-playbook \
     -i "localhost," \
     site.yaml \
     "$@"
