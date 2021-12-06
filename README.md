@@ -2,6 +2,20 @@
 
 Ansible configuration for my dev systems
 
+## Usage
+
+### Bootstrap Script
+
+Drop an ssh key pair onto a new VM, or use ssh-agent, and run:
+
+```bash
+$ curl --location --silent https://raw.githubusercontent.com/rkm/personal-ansible/main/bootstrap.bash | bash
+```
+
+### Existing Install
+
+TODO.
+
 ## Notes
 
 -   Types of install
