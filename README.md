@@ -21,3 +21,4 @@ Ansible configuration for my dev systems
 -   TODOs from old repos
 -   Verify PATH ordering and no dupes
 -   pygrep hook - require `#changed` for any changed_when and failed_when
+-   Fixup bootstrap script to work on all OS and add CI test

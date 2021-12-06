@@ -52,11 +52,10 @@ repos:
     hooks:
       - id: yamllint
         args: [-c, .meta/yamllint.yaml]
-  # TODO(rkm 2021-10-31) Enable
-  # - repo: https://github.com/shellcheck-py/shellcheck-py
-  #   rev: "v0.7.2.1"
-  #   hooks:
-  #     - id: shellcheck
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: "v0.8.0.1"
+    hooks:
+      - id: shellcheck
   - repo: https://github.com/ansible/ansible-lint.git
     rev: "v5.2.1"
     hooks:
