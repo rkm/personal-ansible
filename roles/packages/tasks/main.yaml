@@ -4,6 +4,7 @@
   package:
     update_cache: yes
   when: g_packages_role | bool
+  changed_when: false # could be changed
 
 - name: Install packages
   become: true
