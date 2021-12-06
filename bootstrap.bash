@@ -16,6 +16,8 @@ sudo dnf -y install \
 
 sudo dnf -y install ansible
 
+echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/dont-ask-"$USER"-for-password > /dev/null
+
 pushd /tmp
 
 curl --silent --location https://api.github.com/repos/rkm/personal-ansible/tarball > personal-ansible.tgz
