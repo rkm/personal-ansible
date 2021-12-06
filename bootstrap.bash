@@ -24,9 +24,10 @@ curl --silent --location https://api.github.com/repos/rkm/personal-ansible/tarba
 TEMP_DIR="$(mktemp -d)"
 tar xzf personal-ansible.tgz --strip 1 -C "$TEMP_DIR"
 
-"$TEMP_DIR"/scripts/run_local.bash
+pushd "$TEMP_DIR"
+./scripts/run_local.bash
 
-cd ..
+popd
 rm -rf "$TEMP_DIR" personal-ansible.tgz
 
 popd
