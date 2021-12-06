@@ -25,6 +25,7 @@ packages:
   - mlocate
   - net-tools
   - nmap
+  - patch
   - perl
   - psmisc
   - rsync
