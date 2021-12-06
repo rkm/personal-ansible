@@ -4,6 +4,7 @@
   get_url:
     url: https://api.github.com/repos/rkm/dotfiles/tarball
     dest: "{{ tempdir.path }}/dotfiles.tgz"
+    timeout: 30
   changed_when: false # Will always be changed
 
 - name: unarchive dotfiles
