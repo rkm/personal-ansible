@@ -28,7 +28,7 @@
 
 - name: cleanup
   hosts: all
-  tags: [always]
+  tags: [always, cleanup]
   tasks:
     - name: find temp dirs
       delegate_to: localhost

@@ -100,6 +100,14 @@
       dest: "{{ g_home }}/.profile"
   register: sync_result
 
+- name: delete unused bash files
+  file:
+    dest: "{{ g_home }}/{{ item }}"
+    state: absent
+  with_items:
+    - .bash_profile
+    - .bash_login
+
 - name: debug changed files
   debug:
     msg: "{{ sync_result.results | map(attribute='msg') | list }}"
