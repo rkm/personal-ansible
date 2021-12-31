@@ -70,6 +70,7 @@
     sync_dry_run_result.stdout_lines
     | reject('search', '\/$')
     | map("regex_findall", '^\*deleting\s+(.*)$')
+    | reject('equalto', [])
     | map("first")
     | list
     }}
