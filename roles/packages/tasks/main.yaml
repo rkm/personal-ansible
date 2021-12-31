@@ -10,5 +10,12 @@
   become: true
   package:
     name: "{{ packages }}"
-    state: present
+    state: latest
   when: g_packages_role | bool
+
+- name: Install RHEL packages
+  become: true
+  package:
+    name: "{{ packages_rhel }}"
+    state: latest
+  when: (g_packages_role | bool) and ansible_os_family == 'RedHat'

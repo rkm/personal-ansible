@@ -38,3 +38,6 @@ packages:
   - usbutils
   - vim
   - wget
+
+packages_rhel:
+  - python39-devel
