@@ -41,6 +41,7 @@
   file:
     path: "{{ g_home }}/bin"
     state: directory
+    mode: u=rwx,g=,o=
 
 - name: Symlink python libs to ~/bin
   file:

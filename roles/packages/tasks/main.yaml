@@ -16,7 +16,7 @@
   become: true
   package:
     name: "{{ packages }}"
-    state: latest
+    state: latest # noqa package-latest
   when: g_packages_role | bool
 
 - name: RHEL-specific packages

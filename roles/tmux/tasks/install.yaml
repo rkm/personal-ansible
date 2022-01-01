@@ -18,7 +18,7 @@
     name:
       - libevent-devel
       - ncurses-devel
-    state: latest
+    state: latest # noqa package-latest
 
 - name: download tmux source
   get_url:
@@ -41,13 +41,16 @@
   command: ./configure --prefix={{ g_home }}
   args:
     chdir: "{{ tmux_build_dir }}"
+  changed_when: false # will always be changed
 
 - name: make tmux
   command: make -j
   args:
     chdir: "{{ tmux_build_dir }}"
+  changed_when: false # will always be changed
 
 - name: install tmux
   command: make install
   args:
     chdir: "{{ tmux_build_dir }}"
+  changed_when: false # will always be changed
