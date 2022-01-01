@@ -1,0 +1,52 @@
+---
+- name: Check mandatory variables are defined
+  assert:
+    that: lookup('vars', item) or true
+  with_items:
+    - g_home
+    - venv_python
+
+- name: Set path to venv
+  set_fact:
+    venv_path: "{{ g_home }}/.local/lib/venv"
+
+- name: Check if virtualenv installed
+  stat:
+    path: "{{ venv_path }}"
+  register: venv_stat
+
+- name: Grab virtualenv.pyz
+  get_url:
+    url: https://bootstrap.pypa.io/virtualenv.pyz
+    dest: "{{ tempdir.path }}/virtualenv.pyz"
+  changed_when: false # Will always be changed
+  when: not venv_stat.stat.exists
+
+- name: Create the base venv
+  command: "python{{ venv_python }} {{ tempdir.path }}/virtualenv.pyz {{ venv_path }}"
+  when: not venv_stat.stat.exists
+
+- name: Install python tools
+  pip:
+    name: "{{ python_libs }}"
+    executable: "{{ venv_path }}/bin/pip"
+    extra_args: --upgrade
+  register: pip_install_result
+
+- name: Print tools install if changed # noqa no-handler
+  debug: msg={{ pip_install_result.stdout }}
+  when: pip_install_result.changed
+
+- name: ensure ~/bin exists
+  file:
+    path: "{{ g_home }}/bin"
+    state: directory
+
+- name: Symlink python libs to ~/bin
+  file:
+    src: "{{ venv_path }}/bin/{{ item }}"
+    dest: "{{ g_home }}/bin/{{ item }}"
+    state: link
+  with_items:
+    - "{{ python_libs }}"
+    - python

@@ -26,6 +26,12 @@
   roles:
     - dotfiles
 
+- name: setup python_venv
+  hosts: all
+  tags: [python_venv]
+  roles:
+    - python_venv
+
 - name: cleanup
   hosts: all
   tags: [always, cleanup]

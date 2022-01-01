@@ -1,0 +1,13 @@
+---
+
+venv_python: 3.9
+
+python_libs:
+  - mypy
+  - pip
+  - pipdeptree
+  - pre-commit
+  - tox
+  - twine
+  - virtualenv
+  - wheel
