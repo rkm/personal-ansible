@@ -1,4 +1,10 @@
 ---
+- name: Check mandatory variables are defined
+  assert:
+    that: lookup('vars', item) or true
+  with_items:
+    - g_packages_role
+
 - name: update package cache
   become: true
   package:
@@ -13,9 +19,6 @@
     state: latest
   when: g_packages_role | bool
 
-- name: Install RHEL packages
-  become: true
-  package:
-    name: "{{ packages_rhel }}"
-    state: latest
+- name: RHEL-specific packages
+  include_tasks: rhel.yaml
   when: (g_packages_role | bool) and ansible_os_family == 'RedHat'
