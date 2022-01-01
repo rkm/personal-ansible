@@ -109,6 +109,7 @@
     - .bash_profile
     - .bash_login
     - .bash_logout
+    - .bashrc
 
 - name: debug changed files
   debug:
