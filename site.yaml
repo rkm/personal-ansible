@@ -32,6 +32,12 @@
   roles:
     - python_venv
 
+- name: setup tmux
+  hosts: all
+  tags: [tmux]
+  roles:
+    - tmux
+
 - name: cleanup
   hosts: all
   tags: [always, cleanup]

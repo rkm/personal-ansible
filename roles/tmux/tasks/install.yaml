@@ -1,0 +1,53 @@
+---
+- name: Check mandatory variables are defined
+  assert:
+    that: lookup('vars', item) or true
+  with_items:
+    - g_home
+    - tmux_version
+
+- name: ensure package manager tmux not installed
+  become: true
+  package:
+    name: tmux
+    state: absent
+
+- name: ensure tmux dependencies installed
+  become: true
+  package:
+    name:
+      - libevent-devel
+      - ncurses-devel
+    state: latest
+
+- name: download tmux source
+  get_url:
+    url: "https://github.com/tmux/tmux/releases/download/{{ tmux_version }}/tmux-{{ tmux_version }}.tar.gz"
+    dest: "{{ tempdir.path }}"
+
+- name: set tmux build dir
+  set_fact:
+    tmux_build_dir: "{{ tempdir.path }}/tmux-{{ tmux_version }}"
+
+- name: unpack tmux source
+  unarchive:
+    src: "{{ tmux_build_dir }}.tar.gz"
+    dest: "{{ tempdir.path }}"
+    remote_src: true
+  changed_when: false # Will always be changed
+  register: archive_contents
+
+- name: configure tmux
+  command: ./configure --prefix={{ g_home }}
+  args:
+    chdir: "{{ tmux_build_dir }}"
+
+- name: make tmux
+  command: make -j
+  args:
+    chdir: "{{ tmux_build_dir }}"
+
+- name: install tmux
+  command: make install
+  args:
+    chdir: "{{ tmux_build_dir }}"
