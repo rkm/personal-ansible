@@ -21,6 +21,7 @@ packages:
   - gcc
   - gdb
   - git
+  - git-lfs
   - graphviz
   - jq
   - mlocate
