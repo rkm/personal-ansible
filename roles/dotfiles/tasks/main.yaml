@@ -108,6 +108,7 @@
   with_items:
     - .bash_profile
     - .bash_login
+    - .bash_logout
 
 - name: debug changed files
   debug:
