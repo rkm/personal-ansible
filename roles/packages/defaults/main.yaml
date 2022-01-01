@@ -41,3 +41,6 @@ packages:
 
 packages_rhel:
   - python39-devel
+
+removes_rhel:
+  - PackageKit-command-not-found
