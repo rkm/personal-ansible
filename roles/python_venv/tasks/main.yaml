@@ -16,6 +16,7 @@
   register: venv_stat
 
 - name: Grab virtualenv.pyz
+  delegate_to: localhost
   get_url:
     url: https://bootstrap.pypa.io/virtualenv.pyz
     dest: "{{ tempdir.path }}/virtualenv.pyz"
