@@ -32,7 +32,6 @@ packages:
   - rsync
   - strace
   - telnet
-  - tmux
   - traceroute
   - tree
   - units
