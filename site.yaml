@@ -3,11 +3,16 @@
   hosts: all
   tags: [always]
   tasks:
-    - name: create local controller_tempdir
+    - name: create controller_tempdir
       delegate_to: localhost
       tempfile:
         state: directory
       register: controller_tempdir
+      changed_when: false
+    - name: create remote_tempdir
+      tempfile:
+        state: directory
+      register: remote_tempdir
       changed_when: false
 
 - name: Run global roles
@@ -42,6 +47,8 @@
   hosts: all
   tags: [always, cleanup]
   tasks:
+    # NOTE(rkm 2022-01-02) Intentionally don't cleanup any remote tempdirs since
+    # that only matters in CI
     - name: find temp dirs
       delegate_to: localhost
       find:
