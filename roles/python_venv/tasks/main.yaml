@@ -19,12 +19,12 @@
   delegate_to: localhost
   get_url:
     url: https://bootstrap.pypa.io/virtualenv.pyz
-    dest: "{{ tempdir.path }}/virtualenv.pyz"
+    dest: "{{ controller_tempdir.path }}/virtualenv.pyz"
   changed_when: false # Will always be changed
   when: not venv_stat.stat.exists
 
 - name: Create the base venv
-  command: "python{{ venv_python }} {{ tempdir.path }}/virtualenv.pyz {{ venv_path }}"
+  command: "python{{ venv_python }} {{ controller_tempdir.path }}/virtualenv.pyz {{ venv_path }}"
   when: not venv_stat.stat.exists
 
 - name: Install python tools

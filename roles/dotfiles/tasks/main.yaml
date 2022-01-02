@@ -3,15 +3,15 @@
   delegate_to: localhost
   get_url:
     url: https://api.github.com/repos/rkm/dotfiles/tarball
-    dest: "{{ tempdir.path }}/dotfiles.tgz"
+    dest: "{{ controller_tempdir.path }}/dotfiles.tgz"
     timeout: 30
   changed_when: false # Will always be changed
 
 - name: unarchive dotfiles
   delegate_to: localhost
   unarchive:
-    src: "{{ tempdir.path }}/dotfiles.tgz"
-    dest: "{{ tempdir.path }}"
+    src: "{{ controller_tempdir.path }}/dotfiles.tgz"
+    dest: "{{ controller_tempdir.path }}"
     remote_src: true
     list_files: true
   changed_when: false # Will always be changed
@@ -19,7 +19,7 @@
 
 - name: register tmp dotfiles path
   set_fact:
-    tmp_dotfiles_path: "{{ tempdir.path }}/{{ archive_contents.files[0] }}"
+    tmp_dotfiles_path: "{{ controller_tempdir.path }}/{{ archive_contents.files[0] }}"
 
 - name: create combined .gitconfig
   delegate_to: localhost
@@ -30,9 +30,9 @@
     cat \
       "{{ tmp_dotfiles_path }}/common/gitconfig" \
       "{{ tmp_dotfiles_path }}/linux/config/git/config" \
-    > "{{ tempdir.path }}/gitconfig"
+    > "{{ controller_tempdir.path }}/gitconfig"
     mv \
-      "{{ tempdir.path }}/gitconfig" \
+      "{{ controller_tempdir.path }}/gitconfig" \
       "{{ tmp_dotfiles_path }}/linux/config/git/config"
   changed_when: false # will always be changed
 

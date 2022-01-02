@@ -23,16 +23,16 @@
 - name: download tmux source
   get_url:
     url: "https://github.com/tmux/tmux/releases/download/{{ tmux_version }}/tmux-{{ tmux_version }}.tar.gz"
-    dest: "{{ tempdir.path }}"
+    dest: "{{ controller_tempdir.path }}"
 
 - name: set tmux build dir
   set_fact:
-    tmux_build_dir: "{{ tempdir.path }}/tmux-{{ tmux_version }}"
+    tmux_build_dir: "{{ controller_tempdir.path }}/tmux-{{ tmux_version }}"
 
 - name: unpack tmux source
   unarchive:
     src: "{{ tmux_build_dir }}.tar.gz"
-    dest: "{{ tempdir.path }}"
+    dest: "{{ controller_tempdir.path }}"
     remote_src: true
   changed_when: false # Will always be changed
   register: archive_contents

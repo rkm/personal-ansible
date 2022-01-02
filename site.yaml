@@ -3,11 +3,11 @@
   hosts: all
   tags: [always]
   tasks:
-    - name: create tempdir
+    - name: create local controller_tempdir
       delegate_to: localhost
       tempfile:
         state: directory
-      register: tempdir
+      register: controller_tempdir
       changed_when: false
 
 - name: Run global roles
