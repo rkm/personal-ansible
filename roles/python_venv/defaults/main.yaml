@@ -1,5 +1,5 @@
 ---
-venv_python: 3.9
+venv_python_version: 3.9
 
 python_libs:
   - mypy

@@ -4,7 +4,7 @@
     that: lookup('vars', item) or true
   with_items:
     - g_home
-    - venv_python
+    - venv_python_version
 
 - name: Set path to venv
   set_fact:
@@ -24,7 +24,7 @@
   when: not venv_stat.stat.exists
 
 - name: Create the base venv
-  command: "python{{ venv_python }} {{ controller_tempdir.path }}/virtualenv.pyz {{ venv_path }}"
+  command: "python{{ venv_python_version }} {{ controller_tempdir.path }}/virtualenv.pyz {{ venv_path }}"
   when: not venv_stat.stat.exists
 
 - name: Install python tools
