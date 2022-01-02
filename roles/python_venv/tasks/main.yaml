@@ -4,6 +4,7 @@
     that: lookup('vars', item) or true
   with_items:
     - g_home
+    - remote_tempdir
     - venv_python_version
 
 - name: Set path to venv
@@ -16,15 +17,14 @@
   register: venv_stat
 
 - name: Grab virtualenv.pyz
-  delegate_to: localhost
   get_url:
     url: https://bootstrap.pypa.io/virtualenv.pyz
-    dest: "{{ controller_tempdir.path }}/virtualenv.pyz"
+    dest: "{{ remote_tempdir.path }}/virtualenv.pyz"
   changed_when: false # Will always be changed
   when: not venv_stat.stat.exists
 
 - name: Create the base venv
-  command: "python{{ venv_python_version }} {{ controller_tempdir.path }}/virtualenv.pyz {{ venv_path }}"
+  command: "python{{ venv_python_version }} {{ remote_tempdir.path }}/virtualenv.pyz {{ venv_path }}"
   when: not venv_stat.stat.exists
 
 - name: Install python tools
