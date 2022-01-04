@@ -2,7 +2,8 @@
 
 set -euxo pipefail
 
-/usr/bin/ansible-playbook \
+ANSIBLE_HOST_KEY_CHECKING=False \
+    /usr/bin/ansible-playbook \
     -i "localhost," \
     site.yaml \
     "$@"
