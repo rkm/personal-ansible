@@ -18,6 +18,7 @@ packages:
   - bzip2
   - curl
   - dos2unix
+  - figlet
   - gcc
   - gdb
   - git
