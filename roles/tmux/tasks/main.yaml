@@ -3,10 +3,11 @@
   assert:
     that: lookup('vars', item) or true
   with_items:
+    - g_home
     - tmux_version
 
 - name: get current tmux version if any
-  command: tmux -V
+  command: "{{ g_home }}/bin/tmux -V"
   failed_when: false
   changed_when: false
   register: tmux_version_check
