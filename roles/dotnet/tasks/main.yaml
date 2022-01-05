@@ -1,0 +1,72 @@
+---
+- name: Check mandatory variables are defined
+  assert:
+    that: lookup('vars', item) or true
+  with_items:
+    - g_home
+    - sdk_versions
+
+- name: install dependencies
+  become: true
+  package:
+    name:
+      - krb5-libs
+      - libicu
+      - openssl-libs
+      - zlib
+      - compat-openssl10
+      - libgdiplus
+    state: present
+
+- name: set install dir
+  set_fact:
+    dotnet_install_dir: "{{ g_home }}/.local/lib/dotnet"
+
+- name: ensure install and SDK dirs exist
+  file:
+    path: "{{ dotnet_install_dir }}"
+    state: directory
+    mode: u=rwx,g=,o=
+
+- name: check for existing sdks
+  find:
+    name: "{{ dotnet_install_dir }}/sdk"
+    file_type: directory
+  register: r_existing_sdks
+
+- name: set existing_sdk_versions fact
+  set_fact:
+    existing_sdk_versions: >-
+      {{
+      r_existing_sdks.files
+      | map(attribute='path')
+      | map('basename')
+      | list
+      }}
+
+- name: remove unspecified SDK versions
+  file:
+    path: "{{ dotnet_install_dir }}/sdk/{{ item }}"
+    state: absent
+  with_items: "{{ existing_sdk_versions }}"
+  when: sdk_versions | selectattr("ver", "equalto", item) | list | length == 0
+
+- name: ensure specified SDKs are installed
+  include_tasks: install_sdk.yaml
+  vars:
+    sdk: "{{ sdk_item }}"
+  with_items: "{{ sdk_versions }}"
+  when: sdk_item.ver not in existing_sdk_versions
+  loop_control:
+    loop_var: sdk_item
+
+- name: ensure dotnet is executable
+  file:
+    path: "{{ dotnet_install_dir }}/dotnet"
+    mode: u=rwx,g=,o=
+
+- name: Symlink dotnet to ~/bin
+  file:
+    src: "{{ dotnet_install_dir }}/dotnet"
+    dest: "{{ g_home }}/bin/dotnet"
+    state: link
