@@ -31,6 +31,12 @@
   roles:
     - dotfiles
 
+- name: setup dotnet
+  hosts: all
+  tags: [dotnet]
+  roles:
+    - dotnet
+
 - name: setup python_venv
   hosts: all
   tags: [python_venv]

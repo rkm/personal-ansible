@@ -4,7 +4,34 @@
     that: lookup('vars', item) or true
   with_items:
     - g_home
-    - dotnet_versions
+    - sdk_versions
+
+- name: set install dir
+  set_fact:
+    dotnet_install_dir: "{{ g_home }}/.local/lib/dotnet"
+
+- name: ensure install and SDK dirs exist
+  file:
+    path: "{{ dotnet_install_dir }}"
+    state: directory
+    mode: u=rwx,g=,o=
+
+- name: check for existing sdks
+  find:
+    name: "{{ dotnet_install_dir }}/sdk"
+    file_type: directory
+  register: r_existing_sdks
+
+- name: remove unspecified versions
+  file:
+    path: "{{ dotnet_install_dir }}/sdk/{{ item }}"
+    state: absent
+  with_items: >-
+    {{
+    r_existing_sdks.files
+    | map(attribute='path')
+    | map('basename')
+    | list
+    }}
+  when: sdk_versions | selectattr("ver", "equalto", item) | list | length == 0
 # install package deps
-# remove unspecified versions
-#
