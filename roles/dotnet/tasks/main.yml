@@ -5,8 +5,6 @@
   with_items:
     - g_home
     - dotnet_versions
-
 # install package deps
 # remove unspecified versions
-# 
-
+#
