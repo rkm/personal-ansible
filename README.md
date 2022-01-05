@@ -35,3 +35,4 @@ TODO.
 -   Fixup bootstrap script to work on all OS and add CI test
 -   alternatives python to 39
 -   version tmux and symlink to ~/bin
+-   Java
