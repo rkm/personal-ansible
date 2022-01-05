@@ -1,0 +1,12 @@
+---
+- name: Check mandatory variables are defined
+  assert:
+    that: lookup('vars', item) or true
+  with_items:
+    - g_home
+    - dotnet_versions
+
+# install package deps
+# remove unspecified versions
+# 
+
