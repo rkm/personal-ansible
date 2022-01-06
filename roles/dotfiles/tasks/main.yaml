@@ -123,3 +123,9 @@
     dest: "{{ g_home }}/.config/VERSION"
     mode: u=r,g=r,o=
   changed_when: false # will always be changed
+
+- name: ensure ~/bin exists
+  file:
+    path: "{{ g_home }}/bin"
+    state: directory
+    mode: u=rwx,g=,o=
