@@ -4,6 +4,7 @@
     that: lookup('vars', item) or true
   with_items:
     - packages_rhel
+    - removes_rhel
 
 - name: install specified RHEL packages
   become: true

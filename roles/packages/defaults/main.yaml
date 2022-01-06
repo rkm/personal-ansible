@@ -46,3 +46,8 @@ packages_rhel:
 
 removes_rhel:
   - PackageKit-command-not-found
+
+packages_ubuntu:
+  - python3.9
+
+removes_ubuntu:

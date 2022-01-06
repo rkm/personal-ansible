@@ -29,3 +29,7 @@
 - name: RHEL-specific packages
   include_tasks: rhel.yaml
   when: (g_packages_role | bool) and ansible_os_family == 'RedHat'
+
+- name: Ubuntu-specific packages
+  include_tasks: ubuntu.yaml
+  when: (g_packages_role | bool) and ansible_distribution == "Ubuntu"

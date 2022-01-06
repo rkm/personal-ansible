@@ -1,0 +1,19 @@
+---
+- name: Check mandatory variables are defined
+  assert:
+    that: lookup('vars', item) or true
+  with_items:
+    - packages_ubuntu
+    - removes_ubuntu
+
+- name: install specified ubuntu packages
+  become: true
+  package:
+    name: "{{ packages_ubuntu }}"
+    state: latest # noqa package-latest
+
+- name: remove specified ubuntu packages
+  become: true
+  package:
+    name: "{{ removes_ubuntu }}"
+    state: absent
