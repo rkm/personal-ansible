@@ -5,12 +5,6 @@
   with_items:
     - packages_rhel
 
-- name: install epel
-  become: true
-  package:
-    name: epel-release
-    state: present
-
 - name: install specified RHEL packages
   become: true
   package:

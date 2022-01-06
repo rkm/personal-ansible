@@ -5,6 +5,13 @@
   with_items:
     - g_packages_role
 
+- name: install epel in rhel
+  become: true
+  package:
+    name: epel-release
+    state: present
+  when: ansible_os_family == "RedHat"
+
 - name: update package cache
   become: true
   package:
