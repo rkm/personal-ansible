@@ -49,5 +49,6 @@ removes_rhel:
 
 packages_ubuntu:
   - python3.9
+  - python3-distutils
 
 removes_ubuntu:
