@@ -19,7 +19,6 @@ packages:
   - curl
   - dos2unix
   - figlet
-  - gcc
   - gdb
   - git
   - git-lfs
@@ -42,12 +41,14 @@ packages:
   - wget
 
 packages_rhel:
+  - gcc-c++
   - python39-devel
 
 removes_rhel:
   - PackageKit-command-not-found
 
 packages_ubuntu:
+  - g++
   - python3.9
   - python3-distutils
 
