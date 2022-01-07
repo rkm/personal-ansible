@@ -1,2 +1,12 @@
 ---
 tmux_version: 3.2a
+
+tmux_deps_rhel:
+  - gcc-c++
+  - libevent-devel
+  - ncurses-devel
+
+tmux_deps_ubuntu:
+  - g++
+  - libevent-dev
+  - libncurses-dev

@@ -12,13 +12,19 @@
     name: tmux
     state: absent
 
-- name: ensure tmux dependencies installed
+- name: install rhel dependencies
   become: true
   package:
-    name:
-      - libevent-devel
-      - ncurses-devel
-    state: latest # noqa package-latest
+    name: "{{ tmux_deps_rhel }}"
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: install ubuntu
+  become: true
+  package:
+    name: "{{ tmux_deps_ubuntu }}"
+    state: present
+  when: ansible_distribution == "Ubuntu"
 
 - name: download tmux source
   get_url:
