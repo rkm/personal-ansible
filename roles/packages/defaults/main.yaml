@@ -24,6 +24,7 @@ packages:
   - git-lfs
   - graphviz
   - jq
+  - make
   - mlocate
   - net-tools
   - nmap
