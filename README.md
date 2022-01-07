@@ -26,8 +26,6 @@ TODO.
 
 ## TODO
 
--   Compile git with PCRE support
-    -   `fatal: cannot use Perl-compatible regexes when not compiled with USE_LIBPCRE`
 -   Fix timezone setting
 -   Auto-update for versions in vars files
 -   TODOs from old repos
