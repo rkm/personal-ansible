@@ -3,8 +3,8 @@ driver:
   name: podman
 platforms:
   # TODO(rkm 2021-10-28) Use exact image tags
-  - name: rocky-8.4
-    image: docker.io/rockylinux/rockylinux:latest
+  - name: rocky-8
+    image: docker.io/rockylinux/rockylinux:8
     privileged: true
   - name: ubuntu-20.04
     image: docker.io/ubuntu:latest
