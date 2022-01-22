@@ -20,14 +20,14 @@ echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/dont-ask-"$USER"-
 
 pushd /tmp
 
-curl --silent --location https://api.github.com/repos/rkm/personal-ansible/tarball > personal-ansible.tgz
-TEMP_DIR="$(mktemp -d)"
-tar xzf personal-ansible.tgz --strip 1 -C "$TEMP_DIR"
+    curl --silent --location https://api.github.com/repos/rkm/personal-ansible/tarball > personal-ansible.tgz
+    TEMP_DIR="$(mktemp -d)"
+    tar xzf personal-ansible.tgz --strip 1 -C "$TEMP_DIR"
 
-pushd "$TEMP_DIR"
-./scripts/run_local.bash
+    pushd "$TEMP_DIR"
+        ./scripts/run_local.bash
+    popd
 
-popd
-rm -rf "$TEMP_DIR" personal-ansible.tgz
+    rm -rf "$TEMP_DIR" personal-ansible.tgz
 
-popd
+popd # /tmp
