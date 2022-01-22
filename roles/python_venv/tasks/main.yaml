@@ -38,6 +38,12 @@
   debug: msg={{ pip_install_result.stdout }}
   when: pip_install_result.changed
 
+- name: ensure ~/bin exists
+  file:
+    path: "{{ g_home }}/bin"
+    state: directory
+    mode: u=rwx,g=,o=
+
 - name: Symlink python libs to ~/bin
   file:
     src: "{{ venv_path }}/bin/{{ item }}"

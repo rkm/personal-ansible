@@ -69,6 +69,12 @@
     path: "{{ dotnet_install_dir }}/dotnet"
     mode: u=rwx,g=,o=
 
+- name: ensure ~/bin exists
+  file:
+    path: "{{ g_home }}/bin"
+    state: directory
+    mode: u=rwx,g=,o=
+
 - name: Symlink dotnet to ~/bin
   file:
     src: "{{ dotnet_install_dir }}/dotnet"
