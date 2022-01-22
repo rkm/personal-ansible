@@ -4,7 +4,6 @@
     that: lookup('vars', item) or true
   with_items:
     - g_packages_role
-    - alternatives
 
 - name: install epel in rhel
   become: true
