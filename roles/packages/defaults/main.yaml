@@ -1,9 +1,7 @@
 ---
+# TODO
 # - bash-completion # ubuntu
-# - bc # ubuntu
-# - bind-utils # ubuntu
 # - dkms
-# - figlet
 # - htop
 # - ImageMagick
 # - java-1.8.0-openjdk-devel # ubuntu
