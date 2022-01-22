@@ -34,3 +34,4 @@ TODO.
 -   alternatives python to 39
 -   version tmux and symlink to ~/bin
 -   Java
+-   script in ~/bin to run locally
