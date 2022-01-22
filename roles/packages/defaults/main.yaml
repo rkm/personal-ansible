@@ -54,8 +54,3 @@ packages_ubuntu:
   - python3-distutils
 
 removes_ubuntu:
-
-alternatives:
-  - name: python3
-    link: /usr/bin/python3
-    path: /usr/bin/python3.9
