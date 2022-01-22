@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# {{ ansible_managed }}
+
+set -euxo pipefail
+
+ANSIBLE_CONFIG={{ g_home }}/.config/ansible.cfg \
+ANSIBLE_HOST_KEY_CHECKING=False \
+    /usr/bin/ansible-pull \
+    -U https://github.com/rkm/personal-ansible \
+    -i "localhost," \
+    site.yaml \
+    "$@"

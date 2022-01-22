@@ -31,6 +31,12 @@
   roles:
     - dotfiles
 
+- name: install scripts
+  hosts: all
+  tags: [scripts]
+  roles:
+    - scripts
+
 - name: setup dotnet
   hosts: all
   tags: [dotnet]
