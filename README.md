@@ -14,7 +14,11 @@ curl --location --silent https://raw.githubusercontent.com/rkm/personal-ansible/
 
 ### Existing Install
 
-TODO.
+Run:
+
+```console
+$ ~/bin/personal-ansible.bash
+```
 
 ## Notes
 
@@ -34,4 +38,3 @@ TODO.
 -   alternatives python to 39
 -   version tmux and symlink to ~/bin
 -   Java
--   script in ~/bin to run locally
