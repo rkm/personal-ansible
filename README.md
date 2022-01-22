@@ -17,7 +17,7 @@ curl --location --silent https://raw.githubusercontent.com/rkm/personal-ansible/
 Run:
 
 ```console
-$ ~/bin/personal-ansible.bash
+~/bin/personal-ansible.bash
 ```
 
 ## Notes
