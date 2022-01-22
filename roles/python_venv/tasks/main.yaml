@@ -52,3 +52,4 @@
   with_items:
     - "{{ python_libs }}"
     - python
+    - python3
