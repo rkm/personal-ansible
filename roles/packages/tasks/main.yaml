@@ -4,6 +4,7 @@
     that: lookup('vars', item) or true
   with_items:
     - g_packages_role
+    - alternatives
 
 - name: install epel in rhel
   become: true
@@ -33,3 +34,11 @@
 - name: Ubuntu-specific packages
   include_tasks: ubuntu.yaml
   when: (g_packages_role | bool) and ansible_distribution == "Ubuntu"
+
+- name: update-alternatives
+  become: true
+  alternatives:
+    name: "{{ item.name }}"
+    link: "{{ item.link }}"
+    path: "{{ item.path }}"
+  with_items: "{{ alternatives }}"
