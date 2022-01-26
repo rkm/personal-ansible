@@ -19,7 +19,7 @@
     state: present
   when: ansible_os_family == "RedHat"
 
-- name: install ubuntu
+- name: install ubuntu dependencies
   become: true
   package:
     name: "{{ tmux_deps_ubuntu }}"
@@ -36,7 +36,6 @@
     src: "{{ remote_tempdir.path }}/tmux-{{ tmux_version }}.tar.gz"
     dest: "{{ remote_tempdir.path }}"
     remote_src: true
-  changed_when: false # will always be changed
   register: archive_contents
 
 - name: set tmux build dir
@@ -44,19 +43,37 @@
     tmux_build_dir: "{{ remote_tempdir.path }}/tmux-{{ tmux_version }}"
 
 - name: configure tmux
-  command: ./configure --prefix={{ g_home }}
+  command: ./configure --program-suffix=-{{ tmux_version }} --prefix={{ g_home }} --quiet
   args:
     chdir: "{{ tmux_build_dir }}"
   changed_when: false # will always be changed
 
 - name: make tmux
-  command: make -j
+  command: make -j --quiet
   args:
     chdir: "{{ tmux_build_dir }}"
   changed_when: false # will always be changed
+
+- name: register existing tmux files
+  find:
+    paths: "{{ g_home }}/bin"
+    patterns: tmux*
+  register: tmux_files
+
+- name: delete existing tmux files
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ tmux_files.files }}"
 
 - name: install tmux
   command: make install
   args:
     chdir: "{{ tmux_build_dir }}"
   changed_when: false # will always be changed
+
+- name: Symlink tmux
+  file:
+    src: "{{ g_home }}/bin/tmux-{{ tmux_version }}"
+    dest: "{{ g_home }}/bin/tmux"
+    state: link

@@ -35,5 +35,4 @@ Run:
 -   TODOs from old repos
 -   pygrep hook - require `#changed` for any changed_when and failed_when
 -   Fixup bootstrap script to work on all OS and add CI test
--   version tmux and symlink to ~/bin
 -   Java
