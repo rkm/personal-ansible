@@ -17,6 +17,7 @@
   package:
     name: "{{ removes_rhel }}"
     state: absent
+    autoremove: true
 
 - name: check for cockpit motd
   stat:

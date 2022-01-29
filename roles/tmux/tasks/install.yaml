@@ -11,6 +11,7 @@
   package:
     name: tmux
     state: absent
+    autoremove: true
 
 - name: install rhel dependencies
   become: true
@@ -64,6 +65,7 @@
   file:
     path: "{{ item.path }}"
     state: absent
+    autoremove: true
   with_items: "{{ tmux_files.files }}"
 
 - name: install tmux
