@@ -34,4 +34,3 @@ Run:
 -   Auto-update for versions in vars files
 -   TODOs from old repos
 -   Fixup bootstrap script to work on all OS and add CI test
--   Java
