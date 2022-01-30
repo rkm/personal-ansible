@@ -65,7 +65,6 @@
   file:
     path: "{{ item.path }}"
     state: absent
-    autoremove: true
   with_items: "{{ tmux_files.files }}"
 
 - name: install tmux
