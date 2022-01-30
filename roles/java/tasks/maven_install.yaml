@@ -24,6 +24,7 @@
     url: https://dlcdn.apache.org/maven/maven-3/{{ maven_version }}/binaries/apache-maven-{{ maven_version }}-bin.tar.gz
     dest: "{{ controller_tempdir.path }}"
     checksum: "sha512:{{ maven_sha512 }}"
+    delegate_to: localhost
 
 - name: unarchive maven
   become: true
