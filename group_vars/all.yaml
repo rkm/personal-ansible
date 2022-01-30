@@ -2,6 +2,6 @@
 g_username: "{{ lookup('env', 'ANSIBLE_USER') or 'rkm' }}"
 g_home: /home/{{ g_username }}
 
-g_global_install: true
+g_system_install: true
 
 g_packages_role: true

@@ -15,12 +15,12 @@
       register: remote_tempdir
       changed_when: false
 
-- name: Run global roles
+- name: Run system roles
   hosts: all
   pre_tasks:
-    - name: end_play if not g_global_install
+    - name: end_play if not g_system_install
       meta: end_play
-      when: not g_global_install | bool
+      when: not g_system_install | bool
   roles:
     - role: packages
       tags: [packages]
