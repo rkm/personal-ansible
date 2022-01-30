@@ -39,7 +39,7 @@
   roles:
     - scripts
 
-- name: setup dotnet
+- name: install dotnet
   hosts: all
   tags: [dotnet]
   roles:
