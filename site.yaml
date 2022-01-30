@@ -24,6 +24,8 @@
   roles:
     - role: packages
       tags: [packages]
+    - role: java
+      tags: [java]
 
 - name: install dotfiles
   hosts: all
