@@ -2,8 +2,7 @@
 - name: Check mandatory variables are defined
   assert:
     that: lookup('vars', item) or true
-  with_items:
-    - g_packages_role
+  with_items: []
 
 - name: install epel in rhel
   become: true
@@ -16,7 +15,6 @@
   become: true
   package:
     update_cache: yes
-  when: g_packages_role | bool
   changed_when: false # could be changed
 
 - name: upgrade all packages
@@ -24,19 +22,17 @@
   yum:
     name: "*"
     state: latest # noqa package-latest
-  when: g_packages_role | bool
 
 - name: Install packages
   become: true
   package:
     name: "{{ packages }}"
     state: latest # noqa package-latest
-  when: g_packages_role | bool
 
 - name: RHEL-specific packages
   include_tasks: rhel.yaml
-  when: (g_packages_role | bool) and ansible_os_family == 'RedHat'
+  when: ansible_os_family == 'RedHat'
 
 - name: Ubuntu-specific packages
   include_tasks: ubuntu.yaml
-  when: (g_packages_role | bool) and ansible_distribution == "Ubuntu"
+  when: ansible_distribution == "Ubuntu"

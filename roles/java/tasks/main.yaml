@@ -2,22 +2,21 @@
 - name: Check mandatory variables are defined
   assert:
     that: lookup('vars', item) or true
-  with_items:
-    - g_packages_role
+  with_items: []
 
 - name: install java in rhel
   become: true
   package:
     name: java-11-openjdk
     state: present
-  when: (g_packages_role | bool) and ansible_os_family == 'RedHat'
+  when: ansible_os_family == 'RedHat'
 
 - name: install java in debian
   become: true
   package:
     name: openjdk-11-jdk
     state: present
-  when: (g_packages_role | bool) and ansible_distribution == "Ubuntu"
+  when: ansible_distribution == "Ubuntu"
 
 - name: ensure default maven absent
   become: true
@@ -25,7 +24,7 @@
     name: maven
     state: absent
     autoremove: true
-  when: (g_packages_role | bool) and ansible_os_family == 'RedHat'
+  when: ansible_os_family == 'RedHat'
 
 - name: check current maven version
   command: "/opt/apache-maven-{{ maven_version }}/bin/mvn --version"
