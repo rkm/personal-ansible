@@ -19,6 +19,13 @@
   when: g_packages_role | bool
   changed_when: false # could be changed
 
+- name: upgrade all packages
+  become: true
+  yum:
+    name: "*"
+    state: latest # noqa package-latest
+  when: g_packages_role | bool
+
 - name: Install packages
   become: true
   package:
