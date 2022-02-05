@@ -10,4 +10,5 @@ ANSIBLE_HOST_KEY_CHECKING=False \
     -U https://github.com/rkm/personal-ansible \
     -i "localhost," \
     site.yaml \
-    "$@"
+    "$@" \
+    | tee ~/personal-ansible.log
