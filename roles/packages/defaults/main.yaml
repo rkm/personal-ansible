@@ -26,6 +26,7 @@ packages:
   - mlocate
   - net-tools
   - nmap
+  - npm # For prettier in SmiServices
   - patch
   - perl
   - psmisc
