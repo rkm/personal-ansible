@@ -41,6 +41,7 @@ packages:
   - usbutils
   - vim
   - wget
+  - youtube-dl
 
 packages_rhel:
   - bind-utils
