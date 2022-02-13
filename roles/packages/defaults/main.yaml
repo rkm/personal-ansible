@@ -13,6 +13,8 @@
 # - python38-devel # ubuntu
 
 packages:
+  - autoconf
+  - automake
   - bzip2
   - curl
   - dos2unix
