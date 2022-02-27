@@ -5,6 +5,7 @@ python_libs:
   - mypy
   - pip
   - pipdeptree
+  - podman-compose
   - pre-commit
   - tox
   - twine
