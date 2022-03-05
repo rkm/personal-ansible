@@ -19,7 +19,7 @@
 
 - name: upgrade all packages
   become: true
-  yum:
+  package:
     name: "*"
     state: latest # noqa package-latest
 
