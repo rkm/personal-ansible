@@ -7,7 +7,7 @@ platforms:
     image: docker.io/rockylinux/rockylinux:8
     privileged: true
   - name: ubuntu-20.04
-    image: docker.io/ubuntu:latest
+    image: docker.io/ubuntu:20.04
     privileged: true
   - name: centos-stream8
     image: quay.io/centos/centos:stream8
