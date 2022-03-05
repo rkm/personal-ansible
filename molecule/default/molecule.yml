@@ -9,8 +9,8 @@ platforms:
   - name: ubuntu-20.04
     image: docker.io/ubuntu:latest
     privileged: true
-  - name: centos-stream-8
-    image: quay.io/centos/centos:latest
+  - name: centos-stream8
+    image: quay.io/centos/centos:stream8
     privileged: true
 provisioner:
   name: ansible
