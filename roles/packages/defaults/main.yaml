@@ -31,7 +31,6 @@ packages:
   - npm # For prettier in SmiServices
   - patch
   - perl
-  - podman
   - psmisc
   - rsync
   - strace
@@ -47,6 +46,7 @@ packages:
 packages_rhel:
   - bind-utils
   - gcc-c++
+  - podman
   - python39-devel
 
 removes_rhel:
