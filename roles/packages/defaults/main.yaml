@@ -1,6 +1,5 @@
 ---
 # TODO
-# - bash-completion # ubuntu
 # - dkms
 # - htop
 # - ImageMagick
@@ -15,6 +14,7 @@
 packages:
   - autoconf
   - automake
+  - bash-completion
   - bzip2
   - curl
   - dos2unix
