@@ -57,7 +57,7 @@ repos:
     hooks:
       - id: shellcheck
   - repo: https://github.com/ansible/ansible-lint.git
-    rev: "v5.4.0"
+    rev: "v6.0.0a0"
     hooks:
       - id: ansible-lint
         args: [-c, .meta/ansible-lint.yaml]
