@@ -14,6 +14,7 @@
   register: maven_files
 
 - name: delete existing maven files
+  become: true
   file:
     path: "{{ item.path }}"
     state: absent
