@@ -35,3 +35,5 @@ Run:
 -   TODOs from old repos
 -   Fixup bootstrap script to work on all OS and add CI test
 -   Script to refresh `SSH_AUTH_SOCK`
+    -   Find newest and set
+    -   Delete old files
