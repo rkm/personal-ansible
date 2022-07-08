@@ -16,6 +16,7 @@ packages:
   - automake
   - bash-completion
   - bzip2
+  - cmake
   - curl
   - dos2unix
   - figlet
