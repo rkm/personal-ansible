@@ -1,5 +1,5 @@
 ---
-tmux_version: 3.2a
+tmux_version: 3.3a
 
 tmux_deps_rhel:
   - gcc-c++
