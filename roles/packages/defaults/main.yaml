@@ -7,7 +7,6 @@
 # - java-11-openjdk-devel # ubuntu
 # - ncdu
 # - p7zip
-# - perl-Image-ExifTool
 # - python36-devel # ubuntu
 # - python38-devel # ubuntu
 
@@ -47,6 +46,7 @@ packages:
 packages_rhel:
   - bind-utils
   - gcc-c++
+  - perl-Image-ExifTool
   - podman
   - python39-devel
 
