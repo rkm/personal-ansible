@@ -14,7 +14,7 @@ mkdir -p roles/"$1"/meta
 mkdir -p roles/"$1"/tasks
 mkdir -p roles/"$1"/templates
 
-cat > roles/"$1"/tasks/main.yml <<EOF
+cat > roles/"$1"/tasks/main.yaml <<EOF
 ---
 - name: Check mandatory variables are defined
   assert:
