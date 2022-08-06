@@ -8,13 +8,13 @@
 
 - name: install specified ubuntu packages
   become: true
-  package:
+  ansible.builtin.package:
     name: "{{ packages_ubuntu }}"
     state: latest # noqa package-latest
 
 - name: remove specified ubuntu packages
   become: true
-  package:
+  ansible.builtin.package:
     name: "{{ removes_ubuntu }}"
     state: absent
     autoremove: true

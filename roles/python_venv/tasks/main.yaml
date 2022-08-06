@@ -12,7 +12,7 @@
     venv_path: "{{ g_home }}/.local/lib/venv"
 
 - name: Check if virtualenv installed
-  stat:
+  ansible.builtin.stat:
     path: "{{ venv_path }}"
   register: venv_stat
 
@@ -20,6 +20,7 @@
   ansible.builtin.get_url:
     url: https://bootstrap.pypa.io/virtualenv.pyz
     dest: "{{ remote_tempdir.path }}/virtualenv.pyz"
+    mode: u=rw,g=r,o=r
   changed_when: false # Will always be changed
   when: not venv_stat.stat.exists
 
@@ -28,14 +29,14 @@
   when: not venv_stat.stat.exists
 
 - name: Install python tools
-  pip:
+  ansible.builtin.pip:
     name: "{{ python_libs }}"
     executable: "{{ venv_path }}/bin/pip"
     extra_args: --upgrade
   register: pip_install_result
 
 - name: Print tools install if changed # noqa no-handler
-  debug: msg={{ pip_install_result.stdout }}
+  ansible.builtin.debug: msg={{ pip_install_result.stdout }}
   when: pip_install_result.changed
 
 - name: ensure ~/bin exists

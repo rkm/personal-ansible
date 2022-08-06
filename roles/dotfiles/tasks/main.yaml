@@ -13,6 +13,7 @@
     url: https://api.github.com/repos/rkm/dotfiles/tarball
     dest: "{{ controller_tempdir.path }}/dotfiles.tgz"
     timeout: 30
+    mode: u=rw,g=r,o=r
   changed_when: false # Will always be changed
 
 - name: unarchive dotfiles
@@ -120,13 +121,13 @@
     - .bashrc
 
 - name: debug changed files
-  debug:
+  ansible.builtin.debug:
     msg: "{{ sync_result.results | map(attribute='msg') | list }}"
   when: sync_result.changed
   changed_when: true # should always be changed if run
 
 - name: write dotfiles version
-  copy:
+  ansible.builtin.copy:
     content: "{{ (tmp_dotfiles_path | realpath | basename).split('-')[2] }}\n"
     dest: "{{ g_home }}/.config/VERSION"
     mode: u=r,g=r,o=

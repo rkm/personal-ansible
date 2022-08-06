@@ -17,6 +17,7 @@
     checksum: "{{ sdk.checksum }}"
     dest: "{{ temp_dest }}.tgz"
     timeout: 30
+    mode: u=rw,g=r,o=r
   changed_when: false # Will always be changed
 
 - name: make temp output dir

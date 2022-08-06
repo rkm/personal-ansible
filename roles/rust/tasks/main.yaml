@@ -7,12 +7,13 @@
     - env_rustup_home
 
 - name: check for existing install
-  stat:
+  ansible.builtin.stat:
     path: "{{ env_cargo_home }}"
   register: r_existing_cargo_home
 
 - name: Install rust
   ansible.builtin.shell: >
+    set -euxo pipefail
     curl https://sh.rustup.rs |
     CARGO_HOME={{ env_cargo_home | quote }}
     RUSTUP_HOME={{ env_rustup_home | quote }}
@@ -24,6 +25,7 @@
 
 - name: Install nightly toolchain
   ansible.builtin.shell: >
+    set -euxo pipefail
     CARGO_HOME={{ env_cargo_home | quote }}
     RUSTUP_HOME={{ env_rustup_home | quote }}
     {{ env_cargo_home | quote }}/bin/rustup toolchain install nightly

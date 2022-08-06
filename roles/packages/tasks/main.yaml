@@ -6,26 +6,26 @@
 
 - name: install epel in rhel
   become: true
-  package:
+  ansible.builtin.package:
     name: epel-release
     state: present
   when: ansible_os_family == "RedHat"
 
 - name: update package cache
   become: true
-  package:
-    update_cache: yes
+  ansible.builtin.package:
+    update_cache: true
   changed_when: false # could be changed
 
 - name: upgrade all packages
   become: true
-  package:
+  ansible.builtin.package:
     name: "*"
     state: latest # noqa package-latest
 
 - name: Install packages
   become: true
-  package:
+  ansible.builtin.package:
     name: "{{ packages }}"
     state: latest # noqa package-latest
 

@@ -8,19 +8,19 @@
 
 - name: install specified RHEL packages
   become: true
-  package:
+  ansible.builtin.package:
     name: "{{ packages_rhel }}"
     state: latest # noqa package-latest
 
 - name: remove specified rhel packages
   become: true
-  package:
+  ansible.builtin.package:
     name: "{{ removes_rhel }}"
     state: absent
     autoremove: true
 
 - name: check for cockpit motd
-  stat:
+  ansible.builtin.stat:
     path: /etc/motd.d/cockpit
   register: cockpit_stat_result
 

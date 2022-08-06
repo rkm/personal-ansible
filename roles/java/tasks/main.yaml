@@ -6,7 +6,7 @@
 
 - name: install java in rhel
   become: true
-  package:
+  ansible.builtin.package:
     name:
       - java-1.8.0-openjdk
       - java-11-openjdk
@@ -15,7 +15,7 @@
 
 - name: install java in debian
   become: true
-  package:
+  ansible.builtin.package:
     name:
       - openjdk-8-jdk
       - openjdk-11-jdk
@@ -24,13 +24,13 @@
 
 - name: install ant
   become: true
-  package:
+  ansible.builtin.package:
     name: ant
     state: present
 
 - name: ensure default maven absent
   become: true
-  package:
+  ansible.builtin.package:
     name: maven
     state: absent
     autoremove: true

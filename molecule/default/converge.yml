@@ -4,6 +4,6 @@
   become: true
   pre_tasks:
     - name: create user
-      user:
+      ansible.builtin.user:
         name: runner
 - import_playbook: ../../site.yaml

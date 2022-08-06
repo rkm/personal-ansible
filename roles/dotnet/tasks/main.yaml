@@ -10,14 +10,14 @@
 
 - name: install rhel 8 dependencies
   become: true
-  package:
+  ansible.builtin.package:
     name: "{{ dotnet_deps_rhel_8 }}"
     state: present
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "8"
 
 - name: install ubuntu 20 dependencies
   become: true
-  package:
+  ansible.builtin.package:
     name: "{{ dotnet_deps_ubuntu_20 }}"
     state: present
   when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "20"

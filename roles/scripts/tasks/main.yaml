@@ -12,7 +12,7 @@
     mode: u=rwx,g=,o=
 
 - name: deploy personal-ansible script
-  template:
+  ansible.builtin.template:
     src: personal-ansible.bash.j2
     dest: "{{ g_home }}/bin/personal-ansible.bash"
     mode: u=rx,g=r,o=

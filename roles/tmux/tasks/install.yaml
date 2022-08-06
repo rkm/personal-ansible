@@ -8,21 +8,21 @@
 
 - name: ensure package manager tmux not installed
   become: true
-  package:
+  ansible.builtin.package:
     name: tmux
     state: absent
     autoremove: true
 
 - name: install rhel dependencies
   become: true
-  package:
+  ansible.builtin.package:
     name: "{{ tmux_deps_rhel }}"
     state: present
   when: ansible_os_family == "RedHat"
 
 - name: install ubuntu dependencies
   become: true
-  package:
+  ansible.builtin.package:
     name: "{{ tmux_deps_ubuntu }}"
     state: present
   when: ansible_distribution == "Ubuntu"
@@ -31,6 +31,7 @@
   ansible.builtin.get_url:
     url: "https://github.com/tmux/tmux/releases/download/{{ tmux_version }}/tmux-{{ tmux_version }}.tar.gz"
     dest: "{{ remote_tempdir.path }}"
+    mode: u=rw,g=r,o=r
 
 - name: unpack tmux source
   ansible.builtin.unarchive:
