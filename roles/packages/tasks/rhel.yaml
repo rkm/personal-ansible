@@ -1,6 +1,6 @@
 ---
 - name: Check mandatory variables are defined
-  assert:
+  ansible.builtin.assert:
     that: lookup('vars', item) or true
   with_items:
     - packages_rhel
@@ -26,7 +26,7 @@
 
 - name: mask cockpit motd if exists
   become: true
-  file:
+  ansible.builtin.file:
     src: /dev/null
     dest: /etc/motd.d/cockpit
     state: link

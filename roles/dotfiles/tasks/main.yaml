@@ -1,6 +1,6 @@
 ---
 - name: Check mandatory variables are defined
-  assert:
+  ansible.builtin.assert:
     that: lookup('vars', item) or true
   with_items:
     - g_home
@@ -26,14 +26,14 @@
   register: archive_contents
 
 - name: register tmp dotfiles path
-  set_fact:
+  ansible.builtin.set_fact:
     tmp_dotfiles_path: "{{ controller_tempdir.path }}/{{ archive_contents.files[0] }}"
 
 - name: create combined .gitconfig
   delegate_to: localhost
   args:
     executable: /bin/bash
-  shell: |
+  ansible.builtin.shell: |
     set -euxo pipefail
     cat \
       "{{ tmp_dotfiles_path }}/common/gitconfig" \
@@ -45,7 +45,7 @@
   changed_when: false # will always be changed
 
 - name: delete old dotfiles VERSION file
-  file:
+  ansible.builtin.file:
     dest: "{{ g_home }}/.config/VERSION"
     state: absent
   changed_when: false # will normally be changed
@@ -63,13 +63,13 @@
   register: sync_dry_run_result
 
 - name: ensure backup dir exists
-  file:
+  ansible.builtin.file:
     path: "{{ g_home }}/.config/ansible_backup"
     state: directory
     mode: u=rwx,g=rwx,o=
 
 - name: move any files marked for deletion
-  shell: |
+  ansible.builtin.shell: |
     set -euxo pipefail
     mkdir -p "{{ g_home }}/.config/ansible_backup/$(dirname {{ item }})"
     mv "{{ g_home }}/.config/{{ item }}" "{{ g_home }}/.config/ansible_backup/{{ item }}"
@@ -85,7 +85,7 @@
   when: '"deleting" in sync_dry_run_result.msg'
 
 - name: delete empty directories
-  command: |
+  ansible.builtin.command: |
     find {{ g_home }}/.config \
     -not \( -path {{ g_home }}/.config/ansible_backup -prune \) \
     -empty -type d -print
@@ -110,7 +110,7 @@
   register: sync_result
 
 - name: delete unused bash files
-  file:
+  ansible.builtin.file:
     dest: "{{ g_home }}/{{ item }}"
     state: absent
   with_items:
@@ -133,7 +133,7 @@
   changed_when: false # will always be changed
 
 - name: ensure ~/bin exists
-  file:
+  ansible.builtin.file:
     path: "{{ g_home }}/bin"
     state: directory
     mode: u=rwx,g=,o=

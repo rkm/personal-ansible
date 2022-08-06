@@ -1,19 +1,19 @@
 ---
 - name: Check mandatory variables are defined
-  assert:
+  ansible.builtin.assert:
     that: lookup('vars', item) or true
   with_items:
     - g_home
     - tmux_version
 
 - name: get current tmux version if any
-  command: "{{ g_home }}/bin/tmux -V"
+  ansible.builtin.command: "{{ g_home }}/bin/tmux -V"
   failed_when: false
   changed_when: false
   register: tmux_version_check
 
 - name: determine if tmux needs to be installed
-  set_fact:
+  ansible.builtin.set_fact:
     tmux_require_install: "{{ tmux_version_check.rc != 0 or tmux_version not in tmux_version_check.stdout_lines[0] }}"
 
 - name: install tmux

@@ -1,6 +1,6 @@
 ---
 - name: Check mandatory variables are defined
-  assert:
+  ansible.builtin.assert:
     that: lookup('vars', item) or true
   with_items:
     - env_cargo_home
@@ -12,7 +12,7 @@
   register: r_existing_cargo_home
 
 - name: Install rust
-  shell: >
+  ansible.builtin.shell: >
     curl https://sh.rustup.rs |
     CARGO_HOME={{ env_cargo_home | quote }}
     RUSTUP_HOME={{ env_rustup_home | quote }}
@@ -23,7 +23,7 @@
 # nightly
 
 - name: Install nightly toolchain
-  shell: >
+  ansible.builtin.shell: >
     CARGO_HOME={{ env_cargo_home | quote }}
     RUSTUP_HOME={{ env_rustup_home | quote }}
     {{ env_cargo_home | quote }}/bin/rustup toolchain install nightly
@@ -31,7 +31,7 @@
   changed_when: '"updated" in r_rustup_nightly.stdout'
 
 - name: rustup update
-  shell: >
+  ansible.builtin.shell: >
     CARGO_HOME={{ env_cargo_home | quote }}
     RUSTUP_HOME={{ env_rustup_home | quote }}
     {{ env_cargo_home | quote }}/bin/rustup update

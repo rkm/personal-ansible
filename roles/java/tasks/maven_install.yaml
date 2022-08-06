@@ -1,13 +1,13 @@
 ---
 - name: check mandatory variables are defined
-  assert:
+  ansible.builtin.assert:
     that: lookup('vars', item) or true
   with_items:
     - g_home
     - maven_version
 
 - name: register existing maven files
-  find:
+  ansible.builtin.find:
     paths: "/opt/"
     patterns: apache-maven-*
     file_type: directory
@@ -15,7 +15,7 @@
 
 - name: delete existing maven files
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ item.path }}"
     state: absent
   with_items: "{{ maven_files.files }}"
@@ -34,13 +34,13 @@
     dest: "/opt/"
 
 - name: ensure ~/bin exists
-  file:
+  ansible.builtin.file:
     path: "{{ g_home }}/bin"
     state: directory
     mode: u=rwx,g=,o=
 
 - name: symlink mvn
-  file:
+  ansible.builtin.file:
     src: "/opt/apache-maven-{{ maven_version }}/bin/mvn"
     dest: "{{ g_home }}/bin/mvn"
     state: link

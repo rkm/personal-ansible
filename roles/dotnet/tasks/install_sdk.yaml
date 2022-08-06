@@ -1,6 +1,6 @@
 ---
 - name: Check mandatory variables are defined
-  assert:
+  ansible.builtin.assert:
     that: lookup('vars', item) or true
   with_items:
     - g_home
@@ -8,7 +8,7 @@
     - sdk
 
 - name: set temp dest name
-  set_fact:
+  ansible.builtin.set_fact:
     temp_dest: "{{ remote_tempdir.path }}/dotnet-sdk-{{ sdk.ver }}"
 
 - name: download SDK
@@ -20,7 +20,7 @@
   changed_when: false # Will always be changed
 
 - name: make temp output dir
-  file:
+  ansible.builtin.file:
     path: "{{ temp_dest }}"
     state: directory
     mode: u=rwx,g=,o=
@@ -34,5 +34,5 @@
   changed_when: false # Will always be changed
 
 - name: merge files into dotnet_install_dir
-  command: cp -rT {{ temp_dest }}/ {{ dotnet_install_dir }}/
+  ansible.builtin.command: cp -rT {{ temp_dest }}/ {{ dotnet_install_dir }}/
   changed_when: true # mark as changed if run

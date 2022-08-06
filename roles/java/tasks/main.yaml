@@ -1,6 +1,6 @@
 ---
 - name: Check mandatory variables are defined
-  assert:
+  ansible.builtin.assert:
     that: lookup('vars', item) or true
   with_items: []
 
@@ -37,7 +37,7 @@
   when: ansible_os_family == 'RedHat'
 
 - name: check current maven version
-  command: "/opt/apache-maven-{{ maven_version }}/bin/mvn --version"
+  ansible.builtin.command: "/opt/apache-maven-{{ maven_version }}/bin/mvn --version"
   failed_when: false
   changed_when: false
   register: mvn_result

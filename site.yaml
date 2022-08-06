@@ -5,12 +5,12 @@
   tasks:
     - name: create controller_tempdir
       delegate_to: localhost
-      tempfile:
+      ansible.builtin.tempfile:
         state: directory
       register: controller_tempdir
       changed_when: false
     - name: create remote_tempdir
-      tempfile:
+      ansible.builtin.tempfile:
         state: directory
       register: remote_tempdir
       changed_when: false
@@ -19,7 +19,7 @@
   hosts: all
   pre_tasks:
     - name: end_play if not g_system_install
-      meta: end_play
+      ansible.builtin.meta: end_play
       when: not g_system_install | bool
   roles:
     - role: packages
@@ -71,7 +71,7 @@
     # that only matters in CI
     - name: find temp dirs
       delegate_to: localhost
-      find:
+      ansible.builtin.find:
         paths: /tmp
         file_type: directory
         recurse: false
@@ -79,7 +79,7 @@
       register: temp_paths
     - name: delete temp dirs
       delegate_to: localhost
-      file:
+      ansible.builtin.file:
         path: "{{ item.path }}"
         # TODO(rkm 2021-10-31) This can fail if other users have ansible temp dirs
         state: absent

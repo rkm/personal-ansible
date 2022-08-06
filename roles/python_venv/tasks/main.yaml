@@ -1,6 +1,6 @@
 ---
 - name: Check mandatory variables are defined
-  assert:
+  ansible.builtin.assert:
     that: lookup('vars', item) or true
   with_items:
     - g_home
@@ -8,7 +8,7 @@
     - venv_python_version
 
 - name: Set path to venv
-  set_fact:
+  ansible.builtin.set_fact:
     venv_path: "{{ g_home }}/.local/lib/venv"
 
 - name: Check if virtualenv installed
@@ -24,7 +24,7 @@
   when: not venv_stat.stat.exists
 
 - name: Create the base venv
-  command: "python{{ venv_python_version }} {{ remote_tempdir.path }}/virtualenv.pyz {{ venv_path }}"
+  ansible.builtin.command: "python{{ venv_python_version }} {{ remote_tempdir.path }}/virtualenv.pyz {{ venv_path }}"
   when: not venv_stat.stat.exists
 
 - name: Install python tools
@@ -39,13 +39,13 @@
   when: pip_install_result.changed
 
 - name: ensure ~/bin exists
-  file:
+  ansible.builtin.file:
     path: "{{ g_home }}/bin"
     state: directory
     mode: u=rwx,g=,o=
 
 - name: Symlink python libs to ~/bin
-  file:
+  ansible.builtin.file:
     src: "{{ venv_path }}/bin/{{ item }}"
     dest: "{{ g_home }}/bin/{{ item }}"
     state: link
