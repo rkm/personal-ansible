@@ -1,0 +1,3 @@
+---
+env_cargo_home: "{{ lookup('env', 'CARGO_HOME')}}"
+env_rustup_home: "{{ lookup('env', 'RUSTUP_HOME')}}"

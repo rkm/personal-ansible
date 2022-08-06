@@ -45,6 +45,12 @@
   roles:
     - dotnet
 
+- name: install rust
+  hosts: all
+  tags: [rust]
+  roles:
+    - rust
+
 - name: setup python_venv
   hosts: all
   tags: [python_venv]
