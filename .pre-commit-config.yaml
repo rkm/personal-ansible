@@ -61,5 +61,3 @@ repos:
     hooks:
       - id: ansible-lint
         args: [-c, .meta/ansible-lint.yaml]
-        additional_dependencies:
-          - .[community]

@@ -14,7 +14,7 @@ sudo dnf -y install \
     tar \
 && :
 
-sudo dnf -y install ansible
+sudo dnf -y install ansible ansible-collection-ansible-posix
 
 echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/dont-ask-"$USER"-for-password > /dev/null
 
