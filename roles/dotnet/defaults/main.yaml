@@ -1,13 +1,8 @@
 ---
 sdk_versions:
-  # Match https://github.com/SMI/SmiServices/blob/master/global.json
-  - ver: 5.0.302
-    url: https://download.visualstudio.microsoft.com/download/pr/8468e541-a99a-4191-8470-654fa0747a9a/cb32548d2fd3d60ef3fe8fc80cd735ef/dotnet-sdk-5.0.302-linux-x64.tar.gz
-    checksum: sha512:c80df1f2208f07a76e6bc123aa0fe94879e202dbab9006a5bcd6ec8508e58aa9da5e2c7736f45a2c307016bb6356e8c5ce39cd4ca65d732091d7f46c7eacc397
-  # Latest 6.0 SDK
-  - ver: 6.0.200
-    url: https://download.visualstudio.microsoft.com/download/pr/807f9d72-4940-4b1a-aa4a-8dbb0f73f5d7/cb666c22a87bf9413f29615e0ba94500/dotnet-sdk-6.0.200-linux-x64.tar.gz
-    checksum: sha512:334f3ea4bfeb736bed61c5896796a09d640b0ae74605c514edc5869c395befb7cfc795b58c922f14560e7d41c89c073c62ed01eefc6d9f13aa916e3478949c24
+  - ver: 6.0.302
+    url: https://download.visualstudio.microsoft.com/download/pr/0e83f50a-0619-45e6-8f16-dc4f41d1bb16/e0de908b2f070ef9e7e3b6ddea9d268c/dotnet-sdk-6.0.302-linux-x64.tar.gz
+    checksum: sha512:ac1d124802ca035aa00806312460b371af8e3a55d85383ddd8bb66f427c4fabae75b8be23c45888344e13b283a4f9c7df228447c06d796a57ffa5bb21992e6a4
 
 dotnet_deps_rhel_8:
   - compat-openssl10
