@@ -12,7 +12,7 @@
     temp_dest: "{{ remote_tempdir.path }}/dotnet-sdk-{{ sdk.ver }}"
 
 - name: download SDK
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ sdk.url }}"
     checksum: "{{ sdk.checksum }}"
     dest: "{{ temp_dest }}.tgz"
@@ -27,7 +27,7 @@
   changed_when: false # Will always be changed
 
 - name: unarchive dotnet
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ temp_dest }}.tgz"
     dest: "{{ temp_dest }}"
     remote_src: true

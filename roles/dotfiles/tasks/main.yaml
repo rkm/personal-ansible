@@ -9,7 +9,7 @@
 
 - name: download dotfiles
   delegate_to: localhost
-  get_url:
+  ansible.builtin.get_url:
     url: https://api.github.com/repos/rkm/dotfiles/tarball
     dest: "{{ controller_tempdir.path }}/dotfiles.tgz"
     timeout: 30
@@ -17,7 +17,7 @@
 
 - name: unarchive dotfiles
   delegate_to: localhost
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ controller_tempdir.path }}/dotfiles.tgz"
     dest: "{{ controller_tempdir.path }}"
     remote_src: true

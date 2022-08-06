@@ -17,7 +17,7 @@
   register: venv_stat
 
 - name: Grab virtualenv.pyz
-  get_url:
+  ansible.builtin.get_url:
     url: https://bootstrap.pypa.io/virtualenv.pyz
     dest: "{{ remote_tempdir.path }}/virtualenv.pyz"
   changed_when: false # Will always be changed

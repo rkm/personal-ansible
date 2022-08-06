@@ -28,12 +28,12 @@
   when: ansible_distribution == "Ubuntu"
 
 - name: download tmux source
-  get_url:
+  ansible.builtin.get_url:
     url: "https://github.com/tmux/tmux/releases/download/{{ tmux_version }}/tmux-{{ tmux_version }}.tar.gz"
     dest: "{{ remote_tempdir.path }}"
 
 - name: unpack tmux source
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ remote_tempdir.path }}/tmux-{{ tmux_version }}.tar.gz"
     dest: "{{ remote_tempdir.path }}"
     remote_src: true
