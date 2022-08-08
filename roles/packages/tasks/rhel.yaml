@@ -1,21 +1,21 @@
 ---
 - name: Check mandatory variables are defined
   ansible.builtin.assert:
-    that: lookup('vars', item) or true
+    that: lookup('ansible.builtin.vars', item) or true
   with_items:
-    - packages_rhel
-    - removes_rhel
+    - packages_rhel_{{ ansible_distribution_major_version }}
+    - removes_rhel_{{ ansible_distribution_major_version }}
 
 - name: install specified RHEL packages
   become: true
   ansible.builtin.package:
-    name: "{{ packages_rhel }}"
+    name: "{{ lookup('ansible.builtin.vars', 'packages_rhel_' + ansible_distribution_major_version) }}"
     state: latest # noqa package-latest
 
-- name: remove specified rhel packages
+- name: remove specified RHEL packages
   become: true
   ansible.builtin.package:
-    name: "{{ removes_rhel }}"
+    name: "{{ lookup('ansible.builtin.vars', 'removes_rhel_' + ansible_distribution_major_version) }}"
     state: absent
     autoremove: true
 

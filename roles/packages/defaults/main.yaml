@@ -10,6 +10,8 @@
 # - python36-devel # ubuntu
 # - python38-devel # ubuntu
 
+## Common
+
 packages:
   - autoconf
   - automake
@@ -43,15 +45,30 @@ packages:
   - wget
   - youtube-dl
 
-packages_rhel:
+## RHEL 8
+
+packages_rhel_8:
   - bind-utils
   - gcc-c++
   - perl-Image-ExifTool
   - podman
   - python39-devel
 
-removes_rhel:
+removes_rhel_8:
   - PackageKit-command-not-found
+
+## RHEL 9
+
+packages_rhel_9:
+  - bind-utils
+  - gcc-c++
+  - perl-Image-ExifTool
+  - podman
+
+removes_rhel_9:
+  - PackageKit-command-not-found
+
+## Ubuntu 20.04
 
 packages_ubuntu:
   - bind9-dnsutils

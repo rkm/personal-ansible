@@ -6,6 +6,9 @@ platforms:
   - name: rocky-8
     image: docker.io/rockylinux/rockylinux:8
     privileged: true
+  - name: rocky-9
+    image: docker.io/rockylinux/rockylinux:9
+    privileged: true
   - name: ubuntu-20.04
     image: docker.io/ubuntu:20.04
     privileged: true
