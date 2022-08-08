@@ -12,25 +12,22 @@
   register: r_existing_cargo_home
 
 - name: Install rust
-  ansible.builtin.shell: >
-    set -euxo pipefail
+  ansible.builtin.shell: > # noqa command-instead-of-module
+    set -euxo pipefail &&
     curl https://sh.rustup.rs |
     CARGO_HOME={{ env_cargo_home | quote }}
     RUSTUP_HOME={{ env_rustup_home | quote }}
-    sh -s -- --quiet -y --no-modify-path
+    sh -s -- -y --no-modify-path
   when: not r_existing_cargo_home.stat.exists
   changed_when: true
 
-# nightly
-
 - name: Install nightly toolchain
   ansible.builtin.shell: >
-    set -euxo pipefail
     CARGO_HOME={{ env_cargo_home | quote }}
     RUSTUP_HOME={{ env_rustup_home | quote }}
     {{ env_cargo_home | quote }}/bin/rustup toolchain install nightly
   register: r_rustup_nightly
-  changed_when: '"updated" in r_rustup_nightly.stdout'
+  changed_when: '("updated" in r_rustup_nightly.stdout) or ("installed" in r_rustup_nightly.stdout)'
 
 - name: rustup update
   ansible.builtin.shell: >
@@ -38,4 +35,4 @@
     RUSTUP_HOME={{ env_rustup_home | quote }}
     {{ env_cargo_home | quote }}/bin/rustup update
   register: r_rustup_update
-  changed_when: '"updated" in r_rustup_update.stdout'
+  changed_when: '("updated" in r_rustup_update.stdout) or ("installed" in r_rustup_update.stdout)'
