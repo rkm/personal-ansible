@@ -37,3 +37,4 @@ Run:
 -   Script to refresh `SSH_AUTH_SOCK`
     -   Find newest and set
     -   Delete old files
+-   ffmpeg
