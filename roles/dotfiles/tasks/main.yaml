@@ -60,7 +60,7 @@
     times: false
     delete: true
     recursive: true
-    rsync_opts: [--dry-run, --exclude=ansible_backup, --exclude=BraveBrowser]
+    rsync_opts: [--dry-run, --exclude=ansible_backup, --exclude=BraveSoftware]
   register: sync_dry_run_result
 
 - name: ensure backup dir exists
