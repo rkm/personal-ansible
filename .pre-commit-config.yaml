@@ -53,11 +53,11 @@ repos:
       - id: yamllint
         args: [-c, .meta/yamllint.yaml]
   - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: "v0.9.0.5"
+    rev: "v0.9.0.6"
     hooks:
       - id: shellcheck
   - repo: https://github.com/ansible/ansible-lint.git
-    rev: "v6.20.0"
+    rev: "v6.20.2"
     hooks:
       - id: ansible-lint
         args: [-c, .meta/ansible-lint.yaml]
