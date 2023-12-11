@@ -22,19 +22,19 @@ Run:
 
 ## Notes
 
--   Types of install
-    -   Own VM -> `g_system_install: true` # g_is_offline ignored
-    -   Other VM (with network) ->
-        `g_system_install: false && g_is_offline: false`
-    -   Other VM (no network) -> `g_system_install: false && g_is_offline: true`
+- Types of install
+  - Own VM -> `g_system_install: true` # g_is_offline ignored
+  - Other VM (with network) ->
+    `g_system_install: false && g_is_offline: false`
+  - Other VM (no network) -> `g_system_install: false && g_is_offline: true`
 
 ## TODO
 
--   Fix timezone setting
--   Auto-update for versions in vars files
--   TODOs from old repos
--   Fixup bootstrap script to work on all OS and add CI test
--   Script to refresh `SSH_AUTH_SOCK`
-    -   Find newest and set
-    -   Delete old files
--   ffmpeg
+- Fix timezone setting
+- Auto-update for versions in vars files
+- TODOs from old repos
+- Fixup bootstrap script to work on all OS and add CI test
+- Script to refresh `SSH_AUTH_SOCK`
+  - Find newest and set
+  - Delete old files
+- ffmpeg
