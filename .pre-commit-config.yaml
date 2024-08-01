@@ -42,11 +42,6 @@ repos:
             --ignore-regex,
             '\Whttps?://\S*',
           ]
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: "v4.0.0-alpha.7"
-    hooks:
-      - id: prettier
-        args: [--config, .meta/prettierrc.yaml]
   - repo: https://github.com/adrienverge/yamllint
     rev: "v1.33.0"
     hooks:
@@ -61,3 +56,9 @@ repos:
     hooks:
       - id: ansible-lint
         args: [-c, .meta/ansible-lint.yaml]
+  - repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.17
+    hooks:
+    - id: mdformat
+      additional_dependencies:
+        - mdformat-gfm==0.3.6
