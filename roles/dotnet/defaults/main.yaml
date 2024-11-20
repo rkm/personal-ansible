@@ -10,6 +10,9 @@ sdk_versions:
   - ver: 8.0.300
     url: https://download.visualstudio.microsoft.com/download/pr/4a252cd9-d7b7-41bf-a7f0-b2b10b45c068/1aff08f401d0e3980ac29ccba44efb29/dotnet-sdk-8.0.300-linux-x64.tar.gz # noqa yaml[line-length]
     checksum: sha512:6ba966801ad3869275469b0f7ee7af0b88b659d018a37b241962335bd95ef6e55cb6741ab77d96a93c68174d30d0c270b48b3cda21b493270b0d6038ee3fe79e # noqa yaml[line-length]
+  - ver: 9.0.100
+    url: https://download.visualstudio.microsoft.com/download/pr/308f16a9-2ecf-4a42-b8bb-c1233de985fd/be6e87045ab21935bd8bb98ce69026c4/dotnet-sdk-9.0.100-linux-x64.tar.gz # noqa yaml[line-length]
+    checksum: sha512:7f69bda047de1f952286be330a5e858171ded952d1aa24169e62212f90a27149e63b636c88ad313a6e3ec860da31f8c547ff4ab6808103a070f7fb26ba99c1c7 # noqa yaml[line-length]
 
 dotnet_deps_rhel_8:
   - compat-openssl10
