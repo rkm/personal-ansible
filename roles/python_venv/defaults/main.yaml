@@ -1,5 +1,5 @@
 ---
-venv_python_version: 3.10
+venv_python_version: "3.10"
 
 python_libs:
   - mypy
